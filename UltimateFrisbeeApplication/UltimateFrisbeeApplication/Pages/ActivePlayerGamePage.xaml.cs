@@ -22,9 +22,9 @@ namespace UltimateFrisbeeApplication.Pages
             if (NavigationContext.QueryString.TryGetValue("playerIndex", out selectedIndex))
             {
                 int index = int.Parse(selectedIndex);
-                int gameIndex = App.ManagerViewModel.Teams[App.ManagerViewModel.currentTeam].seasons[App.ManagerViewModel.currentSeason].games.Count - 1;
+                int gameIndex = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games.Count - 1;
 
-                DataContext = App.ManagerViewModel.Teams[App.ManagerViewModel.currentTeam].seasons[App.ManagerViewModel.currentSeason].games[gameIndex].players[index];
+                DataContext = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games[gameIndex].players[index];
             }
         }
 

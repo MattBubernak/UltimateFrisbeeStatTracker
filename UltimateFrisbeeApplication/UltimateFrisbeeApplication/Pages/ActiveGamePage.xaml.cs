@@ -16,20 +16,16 @@ namespace UltimateFrisbeeApplication.Pages
         public ActiveGamePage()
         {
             InitializeComponent();
-            int gameIndex = App.ManagerViewModel.Teams[App.ManagerViewModel.currentTeam].seasons[App.ManagerViewModel.currentSeason].games.Count-1;
-            DataContext = App.ManagerViewModel.Teams[App.ManagerViewModel.currentTeam].seasons[App.ManagerViewModel.currentSeason].games[gameIndex]; 
+            DataContext = App.GameViewModel; 
         }
 
         private void ActivePlayerSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //Grab the index from the selector on the page 
-            int gameIndex = App.ManagerViewModel.Teams[App.ManagerViewModel.currentTeam].seasons[App.ManagerViewModel.currentSeason].games.Count-1;
 
-            int index = App.ManagerViewModel.Teams[App.ManagerViewModel.currentTeam].seasons[App.ManagerViewModel.currentSeason].games[gameIndex].players.IndexOf(ActivePlayerSelector.SelectedItem as Player);
+            int index = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games[App.Manager.currentGame].players.IndexOf(ActivePlayerSelector.SelectedItem as Player);
             String selectedTeam = index.ToString();
             //TODO: Change this implementation from global somehow? 
-            App.ManagerViewModel.currentPlayer = index;
-            //Pass the index of the curren team to the team page 
+            App.Manager.currentPlayer = index;
             //Pass the index of the curren team to the team page 
             NavigationService.Navigate(new Uri("/Pages/ActivePlayerGamePage.xaml?playerIndex="+index, UriKind.Relative));
 

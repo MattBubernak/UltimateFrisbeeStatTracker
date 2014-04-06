@@ -28,7 +28,7 @@ namespace UltimateFrisbeeApplication.Pages
             else
             {
                 string name = TeamNameBox.Text;
-                App.ManagerViewModel.addTeam(name); 
+                App.Manager.addTeam(name); 
                 NavigationService.Navigate(new Uri("/Pages/TeamsPage.xaml", UriKind.Relative));
             }
         }

@@ -15,7 +15,8 @@ namespace UltimateFrisbeeApplication.Pages
         public PlayerPage()
         {
             InitializeComponent();
-            DataContext = App.ManagerViewModel.Teams[App.ManagerViewModel.currentTeam].seasons[App.ManagerViewModel.currentSeason].players[App.ManagerViewModel.currentPlayer]; 
+            DataContext = App.PlayerViewModel; 
+            
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -24,7 +25,7 @@ namespace UltimateFrisbeeApplication.Pages
             if (NavigationContext.QueryString.TryGetValue("playerIndex", out selectedIndex))
             {
                 int index = int.Parse(selectedIndex);
-                DataContext = App.ManagerViewModel.Teams[App.ManagerViewModel.currentTeam].seasons[App.ManagerViewModel.currentSeason].players[index];
+                DataContext = App.ManagerViewModel.Teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players[index];
             }
         }
 

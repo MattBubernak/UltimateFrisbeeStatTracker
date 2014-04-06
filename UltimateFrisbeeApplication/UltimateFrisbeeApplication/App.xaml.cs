@@ -8,13 +8,19 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using UltimateFrisbeeApplication.Resources;
 using UltimateFrisbeeApplication.ViewModels;
+using UltimateFrisbeeApplication.Models; 
 
 namespace UltimateFrisbeeApplication
 {
     public partial class App : Application
     {
         private static MainViewModel viewModel = null;
-        private static ManagerViewModel managerViewModel = null; 
+        private static ManagerViewModel managerViewModel = null;
+        private static TeamViewModel teamViewModel = null;
+        private static PlayerViewModel playerViewModel = null;
+        private static GameViewModel gameViewModel = null; 
+
+        private static Manager manager = null;
         /// <summary>
         /// A static ViewModel used by the views to bind against.
         /// </summary>
@@ -29,6 +35,55 @@ namespace UltimateFrisbeeApplication
 
                 return viewModel;
             }
+        }
+
+        public static TeamViewModel TeamViewModel
+        {
+            get
+            {
+                // Delay creation of the view model until necessary
+                if (teamViewModel == null)
+                    teamViewModel = new TeamViewModel();
+
+                return teamViewModel;
+            }
+        }
+
+        public static GameViewModel GameViewModel
+        {
+            get
+            {
+                // Delay creation of the view model until necessary
+                if (gameViewModel == null)
+                    gameViewModel = new GameViewModel();
+
+                return gameViewModel;
+            }
+        }
+
+        public static PlayerViewModel PlayerViewModel
+        {
+            get
+            {
+                // Delay creation of the view model until necessary
+                if (playerViewModel == null)
+                    playerViewModel = new PlayerViewModel();
+
+                return playerViewModel;
+            }
+        }
+
+        //manager = the main model. 
+        public static Manager Manager
+        {
+            get
+            {
+                if (manager == null)
+                    manager = new Manager();
+                return manager; 
+            }
+
+            
         }
 
         //static managerviewmodel 

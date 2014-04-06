@@ -95,6 +95,7 @@
     </Compile>
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Models\Game.cs" />
+    <Compile Include="Models\Manager.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Season.cs" />
     <Compile Include="Models\Team.cs" />
@@ -107,9 +108,6 @@
     <Compile Include="Pages\CreateTeam.xaml.cs">
       <DependentUpon>CreateTeam.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\DetailsPage.xaml.cs">
-      <DependentUpon>DetailsPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -121,9 +119,6 @@
     </Compile>
     <Compile Include="Pages\PlayerPage.xaml.cs">
       <DependentUpon>PlayerPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Season.xaml.cs">
-      <DependentUpon>Season.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\TeamPage.xaml.cs">
       <DependentUpon>TeamPage.xaml</DependentUpon>
@@ -139,6 +134,8 @@
     </Compile>
     <Compile Include="ViewModels\ItemViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\GameViewModel.cs" />
+    <Compile Include="ViewModels\PlayerViewModel.cs" />
     <Compile Include="ViewModels\TeamViewModel.cs" />
     <Compile Include="ViewModels\ManagerViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
@@ -160,10 +157,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\DetailsPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -181,10 +174,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\PlayerPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\Season.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

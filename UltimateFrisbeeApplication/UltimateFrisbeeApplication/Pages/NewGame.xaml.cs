@@ -23,15 +23,8 @@ namespace UltimateFrisbeeApplication.Pages
         {
             //add game to games list 
             Game newGame = new Game(OpponentBox.Text,LocationBox.Text,TournamentBox.Text, Convert.ToInt32(CapBox.Text));
-            App.ManagerViewModel.Teams[App.ManagerViewModel.currentTeam].seasons[App.ManagerViewModel.currentSeason].games.Add(newGame); 
-            //determine number of games 
-            int gameIndex = App.ManagerViewModel.Teams[App.ManagerViewModel.currentTeam].seasons[App.ManagerViewModel.currentSeason].games.Count - 1; 
+            App.GameViewModel.createGame(newGame); 
 
-            //for every player on the team, for this season, add him to the specific game instance. 
-            foreach (Player player in  App.ManagerViewModel.Teams[App.ManagerViewModel.currentTeam].seasons[App.ManagerViewModel.currentSeason].players)
-            {
-                App.ManagerViewModel.Teams[App.ManagerViewModel.currentTeam].seasons[App.ManagerViewModel.currentSeason].games[gameIndex].players.Add(player); 
-            }
             //navigate to active game page 
             NavigationService.Navigate(new Uri("/Pages/ActiveGamePage.xaml", UriKind.Relative));
 

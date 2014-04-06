@@ -21,9 +21,9 @@ namespace UltimateFrisbeeApplication.Pages
         private void Save_Player(object sender, EventArgs e)
         {
             //maybe should be handled by viewModel?? 
-            Player newPlayer = new Player(FNameBox.Text, LNameBox.Text, PhoneBox.Text, EmailBox.Text); 
-            App.ManagerViewModel.Teams[App.ManagerViewModel.currentTeam].seasons[App.ManagerViewModel.currentSeason].players.Add(newPlayer);
-            NavigationService.Navigate(new Uri("/Pages/Season.xaml", UriKind.Relative)); 
+            Player newPlayer = new Player(FNameBox.Text, LNameBox.Text, PhoneBox.Text, EmailBox.Text);
+            App.PlayerViewModel.createPlayer(newPlayer); 
+            NavigationService.Navigate(new Uri("/Pages/TeamPage.xaml", UriKind.Relative)); 
         }
     }
 }

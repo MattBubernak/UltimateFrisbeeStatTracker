@@ -24,7 +24,7 @@ namespace UltimateFrisbeeApplication.Pages
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Debug.WriteLine(App.ManagerViewModel.numTeams); 
+
         }
 
 
@@ -42,15 +42,13 @@ namespace UltimateFrisbeeApplication.Pages
         private void TeamSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //Grab the index from the selector on the page 
-            //Debug.WriteLine(TeamSelector.SelectedItem);
             int index = App.ManagerViewModel.Teams.IndexOf(TeamSelector.SelectedItem as Team);
 
-            Debug.WriteLine(index);
-            String selectedTeam = index.ToString(); 
-            //TODO: Change this implementation from global somehow? 
-            App.ManagerViewModel.currentTeam = index; 
-            //Pass the index of the curren team to the team page 
-            NavigationService.Navigate(new Uri("/Pages/TeamPage.xaml?teamIndex=" + selectedTeam, UriKind.Relative));
+            //set currentTeam of manager 
+            App.Manager.currentTeam = index; 
+
+            //Navigate to team page 
+            NavigationService.Navigate(new Uri("/Pages/TeamPage.xaml", UriKind.Relative));
         }
     }
 }

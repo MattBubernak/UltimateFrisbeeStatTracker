@@ -27,8 +27,16 @@ namespace UltimateFrisbeeApplication.Models
             this.GoalsAllowed = 0;
             this.GamesPlayed = 0; 
             this.players = new ObservableCollection<Player>();
+            //for testing purposes....
+            this.players.Add(new Player("Matt", "Bubernak", "723444111", "nud@gmail.com"));
+            this.players.Add(new Player("Sarah", "Feller", "723444111", "nud@gmail.com"));
+            this.players.Add(new Player("Mark", "Cousins", "723444111", "nud@gmail.com"));
+            this.players.Add(new Player("Fred", "Flinstone", "723444111", "nud@gmail.com"));
+
             this.games = new ObservableCollection<Game>(); 
         }
+
+
 
 
     }
