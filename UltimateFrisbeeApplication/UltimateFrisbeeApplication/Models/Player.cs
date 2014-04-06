@@ -16,7 +16,8 @@ namespace UltimateFrisbeeApplication.Models
         private int _assists;
         private int _turnovers;
         private int _points; 
-        private int _defenses; 
+        private int _defenses;
+        private int _playerID; 
 
         public Player()
         {
@@ -35,10 +36,16 @@ namespace UltimateFrisbeeApplication.Models
             this._Fname = FName;
             this._Lname = LName;
             this._Phone = Phone;
-            this._Email = Email; 
+            this._Email = Email;
         }
 
         //below methods are all for binding purposes, and get/set! 
+
+        public int PlayerID
+        {
+            get { return _playerID; }
+            set { _playerID = value; }
+        }
 
         public string FName
         {

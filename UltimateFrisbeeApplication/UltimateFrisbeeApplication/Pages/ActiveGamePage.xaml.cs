@@ -33,21 +33,28 @@ namespace UltimateFrisbeeApplication.Pages
 
         private void PlusScore(object sender, RoutedEventArgs e)
         {
-
+            App.GameViewModel.scorePlus(); 
         }
 
         private void MinusScore(object sender, RoutedEventArgs e)
         {
-
+            App.GameViewModel.scoreMinus(); 
         }
 
         private void PlusScore_Opp(object sender, RoutedEventArgs e)
         {
-
+            App.GameViewModel.scorePlusOpp(); 
         }
 
         private void MinusScore_Opp(object sender, RoutedEventArgs e)
         {
+            App.GameViewModel.scoreMinusOpp(); 
+        }
+
+        private void Finish_Game(object sender, RoutedEventArgs e)
+        {
+            App.GameViewModel.completeGame();
+            NavigationService.Navigate(new Uri("/Pages/TeamPage.xaml?panoramaIndex=0", UriKind.Relative));
 
         }
     }

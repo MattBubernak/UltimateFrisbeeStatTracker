@@ -25,7 +25,9 @@ namespace UltimateFrisbeeApplication.Pages
             if (NavigationContext.QueryString.TryGetValue("playerIndex", out selectedIndex))
             {
                 int index = int.Parse(selectedIndex);
-                DataContext = App.ManagerViewModel.Teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players[index];
+                App.Manager.currentPlayer = index;
+                App.PlayerViewModel.update(); 
+                DataContext = App.PlayerViewModel;
             }
         }
 

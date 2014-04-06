@@ -22,8 +22,8 @@ namespace UltimateFrisbeeApplication.Pages
         {
             //maybe should be handled by viewModel?? 
             Player newPlayer = new Player(FNameBox.Text, LNameBox.Text, PhoneBox.Text, EmailBox.Text);
-            App.PlayerViewModel.createPlayer(newPlayer); 
-            NavigationService.Navigate(new Uri("/Pages/TeamPage.xaml", UriKind.Relative)); 
+            App.PlayerViewModel.createPlayer(newPlayer);
+            NavigationService.Navigate(new Uri("/Pages/TeamPage.xaml?panoramaIndex=1", UriKind.Relative)); 
         }
     }
 }

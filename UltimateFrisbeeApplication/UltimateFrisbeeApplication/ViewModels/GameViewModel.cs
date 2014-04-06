@@ -2,7 +2,8 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using UltimateFrisbeeApplication.Resources;
-using UltimateFrisbeeApplication.Models; 
+using UltimateFrisbeeApplication.Models;
+using System.Diagnostics; 
 
 
 namespace UltimateFrisbeeApplication.ViewModels
@@ -21,6 +22,32 @@ namespace UltimateFrisbeeApplication.ViewModels
        {
            this.game = null;
        }
+
+       public void scorePlus()
+       {
+           game.score++;
+           Debug.WriteLine(game.score);
+           score++; 
+           NotifyPropertyChanged("score"); 
+           App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games[App.Manager.currentGame] = game; 
+       }
+
+        public void scorePlusOpp()
+       {
+           game.scoreOpp++;
+           scoreOpp++; 
+       }
+        public void scoreMinus()
+        {
+            game.score--;
+            score--; 
+        }
+        public void scoreMinusOpp()
+        {
+            game.scoreOpp--;
+            scoreOpp--; 
+            
+        }
        public void update()
        {
            game = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games[App.Manager.currentGame];
@@ -45,7 +72,74 @@ namespace UltimateFrisbeeApplication.ViewModels
            update(); //sets current game instance to the one we just created 
 
        }
-      
+
+       public void completeGame()
+       {
+           //update the DB with all the players stats from this game, game is now complete.
+           foreach (Player player in players)
+           {
+               int Playerindex = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players.IndexOf(player);
+               App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players[Playerindex].Assists += player.Assists;
+               App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players[Playerindex].Defenses += player.Defenses;
+               App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players[Playerindex].Goals += player.Goals;
+               App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players[Playerindex].Points += player.Points;
+               App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players[Playerindex].Turnovers += player.Turnovers; 
+           }
+
+           //update the season stats
+           App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].GoalsScored += score;
+           App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].GoalsAllowed += scoreOpp;
+           App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].GamesPlayed++;
+
+           if (score > scoreOpp)
+           {
+               App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].Wins++;
+           }
+           else
+           {
+               App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].Losses++;
+
+           }
+           NotifyPropertyChanged("GoalsScored");
+           NotifyPropertyChanged("GoalsAllowed");
+           NotifyPropertyChanged("GamesPlayed");
+           NotifyPropertyChanged("Wins");
+           NotifyPropertyChanged("Losses");
+
+       }
+
+       public int Score
+       {
+           get
+           {
+               return score;
+           }
+           set
+           {
+               if (value != score)
+               {
+                   score = value;
+                   Debug.WriteLine("should be notifying console..."); 
+                   NotifyPropertyChanged("Score");
+               }
+           }
+       }
+
+       public int ScoreOpp
+       {
+           get
+           {
+               return scoreOpp;
+           }
+           set
+           {
+               if (value != scoreOpp)
+               {
+                   scoreOpp = value;
+                   NotifyPropertyChanged("scoreOpp");
+               }
+           }
+       }
 
        
 

@@ -48,7 +48,7 @@ namespace UltimateFrisbeeApplication.Pages
             App.Manager.currentTeam = index; 
 
             //Navigate to team page 
-            NavigationService.Navigate(new Uri("/Pages/TeamPage.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/Pages/TeamPage.xaml?panoramaIndex=0", UriKind.Relative));
         }
     }
 }

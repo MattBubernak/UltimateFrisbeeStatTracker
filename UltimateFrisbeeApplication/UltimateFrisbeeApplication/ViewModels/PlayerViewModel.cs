@@ -20,6 +20,7 @@ namespace UltimateFrisbeeApplication.ViewModels
        public void update()
        {
            player = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players[App.Manager.currentPlayer]; 
+       
        }
        public void createPlayer(Player newPlayer)
        {

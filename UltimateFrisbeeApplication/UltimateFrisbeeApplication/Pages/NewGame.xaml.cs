@@ -7,7 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using UltimateFrisbeeApplication.Models; 
+using UltimateFrisbeeApplication.Models;
 
 
 namespace UltimateFrisbeeApplication.Pages
@@ -22,7 +22,17 @@ namespace UltimateFrisbeeApplication.Pages
         private void Save_Game(object sender, EventArgs e)
         {
             //add game to games list 
-            Game newGame = new Game(OpponentBox.Text,LocationBox.Text,TournamentBox.Text, Convert.ToInt32(CapBox.Text));
+            //check if we can convert the cap to int, to avoid error 
+            int cap;
+            if (Int32.TryParse(CapBox.Text,out cap))
+            {
+
+            }
+            else
+            {
+                cap = 13; 
+            }
+            Game newGame = new Game(OpponentBox.Text,LocationBox.Text,TournamentBox.Text, cap);
             App.GameViewModel.createGame(newGame); 
 
             //navigate to active game page 

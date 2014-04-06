@@ -11,11 +11,12 @@ namespace UltimateFrisbeeApplication.ViewModels
     {
        //Seasons = list of seasons in manager view model
        public ObservableCollection<Season> Seasons { get; private set; }
+
        //Players = list of players from CURRENT season
        public ObservableCollection<Player> seasonPlayers { get; set; }
        //Games = list of games from CURRENT season
        public ObservableCollection<Game> seasonGames { get; set; }
-
+       public Season currentSeason { get; set;  }
        public string Name { get; set; }
        public int Wins {get;set;}
        public int Losses {get; set; }
@@ -26,6 +27,7 @@ namespace UltimateFrisbeeApplication.ViewModels
        public TeamViewModel()
        {
            this.Seasons = new ObservableCollection<Season>();
+           this.currentSeason = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason]; 
            this.seasonGames = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games;
            this.seasonPlayers = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players;
            this.Name = App.Manager.teams[App.Manager.currentTeam].Name; 
@@ -42,11 +44,7 @@ namespace UltimateFrisbeeApplication.ViewModels
        {
            this.seasonGames = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games;
            this.seasonPlayers = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players;
-           this.Name = App.Manager.teams[App.Manager.currentTeam].Name;
-           this.Wins = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].Wins;
-           this.Losses = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].Losses;
-           this.GoalsScored = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].GoalsScored;
-           this.GoalsAllowed = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].GoalsAllowed;
+          
 
        }
 

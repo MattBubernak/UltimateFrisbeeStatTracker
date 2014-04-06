@@ -28,5 +28,17 @@ namespace UltimateFrisbeeApplication.Models
             this.scoreOpp = 0;
             this.players = new ObservableCollection<Player>(); 
         }
+
+        public string gameDescription
+        {
+            get
+            {
+                if (score > scoreOpp)
+                {
+                    return "Win, " + score + " to " + scoreOpp; 
+                }
+                return "Loss, " + score + " to " + scoreOpp; 
+            }
+        }
     }
 }

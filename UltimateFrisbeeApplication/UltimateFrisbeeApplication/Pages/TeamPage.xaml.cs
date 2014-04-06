@@ -60,7 +60,6 @@ namespace UltimateFrisbeeApplication.Pages
             {
                 case 0:
                     ApplicationBar.IsVisible = true;
-
                     //clear the application bar, maybe not the best way to do it? 
                     ApplicationBar = new ApplicationBar();
                     //hide the application bar 
