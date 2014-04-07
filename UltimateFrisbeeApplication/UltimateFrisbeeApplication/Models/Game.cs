@@ -16,7 +16,7 @@ namespace UltimateFrisbeeApplication.Models
         public int cap { get; set; }
         public int scoreOpp { get; set; }
         public int score { get; set; }
-        public ObservableCollection<Player> players { get; set; }
+        public ObservableCollection<InGamePlayer> players { get; set; }
 
         public Game(string opponent, string location, string tournament, int cap)
         {
@@ -26,7 +26,7 @@ namespace UltimateFrisbeeApplication.Models
             this.cap = cap;
             this.score = 0;
             this.scoreOpp = 0;
-            this.players = new ObservableCollection<Player>(); 
+            this.players = new ObservableCollection<InGamePlayer>(); 
         }
 
         public string gameDescription

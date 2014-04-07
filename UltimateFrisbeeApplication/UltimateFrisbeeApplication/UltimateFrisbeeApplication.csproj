@@ -96,6 +96,7 @@
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Manager.cs" />
+    <Compile Include="Models\InGamePlayer.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Season.cs" />
     <Compile Include="Models\Team.cs" />
@@ -135,6 +136,7 @@
     <Compile Include="ViewModels\ItemViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\GameViewModel.cs" />
+    <Compile Include="ViewModels\ActivePlayerViewModel.cs" />
     <Compile Include="ViewModels\PlayerViewModel.cs" />
     <Compile Include="ViewModels\TeamViewModel.cs" />
     <Compile Include="ViewModels\ManagerViewModel.cs" />
@@ -187,6 +189,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml">

@@ -24,7 +24,7 @@ namespace UltimateFrisbeeApplication.Pages
             {
                 int index = int.Parse(selectedIndex);
             }
-            DataContext = App.PlayerViewModel; 
+            DataContext = App.ActivePlayerViewModel; 
 
         }
 
@@ -38,61 +38,61 @@ namespace UltimateFrisbeeApplication.Pages
 
         private void PlusGoal(object sender, RoutedEventArgs e)
         {
-            App.PlayerViewModel.changeStat("Goals", 1);
+            App.ActivePlayerViewModel.changeStat("Goals", 1);
             App.GameViewModel.game.score++; 
         }
 
         private void MinusGoal(object sender, RoutedEventArgs e)
         {
-            App.PlayerViewModel.changeStat("Goals", -1);
+            App.ActivePlayerViewModel.changeStat("Goals", -1);
 
         }
 
         private void PlusAssist(object sender, RoutedEventArgs e)
         {
-            App.PlayerViewModel.changeStat("Assists", 1);
+            App.ActivePlayerViewModel.changeStat("Assists", 1);
 
         }
 
         private void MinusAssist(object sender, RoutedEventArgs e)
         {
-            App.PlayerViewModel.changeStat("Assists", -1);
+            App.ActivePlayerViewModel.changeStat("Assists", -1);
 
         }
 
         private void PlusD(object sender, RoutedEventArgs e)
         {
-            App.PlayerViewModel.changeStat("Defenses", 1);
+            App.ActivePlayerViewModel.changeStat("Defenses", 1);
 
         }
 
         private void MinusD(object sender, RoutedEventArgs e)
         {
-            App.PlayerViewModel.changeStat("Defenses", -1);
+            App.ActivePlayerViewModel.changeStat("Defenses", -1);
 
         }
 
         private void PlusTurnover(object sender, RoutedEventArgs e)
         {
-            App.PlayerViewModel.changeStat("Turnovers", 1);
+            App.ActivePlayerViewModel.changeStat("Turnovers", 1);
 
         }
 
         private void MinusTurnover(object sender, RoutedEventArgs e)
         {
-            App.PlayerViewModel.changeStat("Turnovers", -1);
+            App.ActivePlayerViewModel.changeStat("Turnovers", -1);
 
         }
 
         private void PlusPoint(object sender, RoutedEventArgs e)
         {
-            App.PlayerViewModel.changeStat("Points", 1);
+            App.ActivePlayerViewModel.changeStat("Points", 1);
 
         }
 
         private void MinusPoint(object sender, RoutedEventArgs e)
         {
-            App.PlayerViewModel.changeStat("Points", -1);
+            App.ActivePlayerViewModel.changeStat("Points", -1);
 
         }
     }

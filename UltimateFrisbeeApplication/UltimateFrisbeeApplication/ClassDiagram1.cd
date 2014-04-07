@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="UltimateFrisbeeApplication.App" Collapsed="true">
+    <Position X="13.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IwAgCSAMAABAhAAAQAAYAAAEGAAAFQAAAAAAAKIAAAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UltimateFrisbeeApplication.LocalizedStrings" Collapsed="true">
+    <Position X="15" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>LocalizedStrings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UltimateFrisbeeApplication.MainPage" Collapsed="true">
+    <Position X="16.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>MainPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UltimateFrisbeeApplication.Models.Game">
+    <Position X="18" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAABAAACAAAAEAAAAAIAAACAAAAAAAAIAAAAAIAAAA=</HashCode>
+      <FileName>Models\Game.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UltimateFrisbeeApplication.Models.Manager">
+    <Position X="12.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAQgAAAAhAAAAAAAAAgAAAACAAAIAAAAAAAA=</HashCode>
+      <FileName>Models\Manager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UltimateFrisbeeApplication.Models.Player" Collapsed="true">
+    <Position X="15" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AFAAAAAAAqAggJAQgAAAwAAkAAEAAEAAAIIAIAAgIAA=</HashCode>
+      <FileName>Models\Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UltimateFrisbeeApplication.Models.Season">
+    <Position X="16.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAACAQAAAAAAABgIAAAAVAAAAA=</HashCode>
+      <FileName>Models\Season.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UltimateFrisbeeApplication.Models.Team">
+    <Position X="14.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAIAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Team.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UltimateFrisbeeApplication.Pages.ActiveGamePage" Collapsed="true">
+    <Position X="25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAQAAAAAAAACAAQCAAAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pages\ActiveGamePage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UltimateFrisbeeApplication.Pages.ActivePlayerGamePage" Collapsed="true">
+    <Position X="11.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>FAAAAAAAAQAAAAAAAAEwAAQBAgAAAAAAAAAABgAAAAE=</HashCode>
+      <FileName>Pages\ActivePlayerGamePage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UltimateFrisbeeApplication.Pages.CreatePlayer" Collapsed="true">
+    <Position X="16.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pages\CreatePlayer.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UltimateFrisbeeApplication.Pages.CreateTeam" Collapsed="true">
+    <Position X="22.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pages\CreateTeam.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UltimateFrisbeeApplication.Pages.NewGame" Collapsed="true">
+    <Position X="13.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pages\NewGame.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UltimateFrisbeeApplication.Pages.PlayerPage" Collapsed="true">
+    <Position X="16.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAAAAAAAAQAAAAAAABAAAAAgAAAAAA=</HashCode>
+      <FileName>Pages\PlayerPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UltimateFrisbeeApplication.Pages.TeamPage" Collapsed="true">
+    <Position X="13.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAABAAQEAAIAAAAAAAAAAAACAAI=</HashCode>
+      <FileName>Pages\TeamPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UltimateFrisbeeApplication.Pages.TeamsPage" Collapsed="true">
+    <Position X="15" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABIAACQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pages\TeamsPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UltimateFrisbeeApplication.Resources.AppResources" Collapsed="true">
+    <Position X="15" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgCAAEAAAABEIAAAQAAAAAAAAAAAAIAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UltimateFrisbeeApplication.ViewModels.BaseViewModel" Collapsed="true">
+    <Position X="3.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\BaseViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="UltimateFrisbeeApplication.ViewModels.GameViewModel">
+    <Position X="5.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACACQAAAEAAAgAAgAAAAAAAAAABgAIIAAAAAAEAAA=</HashCode>
+      <FileName>ViewModels\GameViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UltimateFrisbeeApplication.ViewModels.ItemViewModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IIACAIAAAAAAgYAAAABAAAAAgAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\ItemViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="UltimateFrisbeeApplication.ViewModels.MainViewModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="20.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAwCIEAAAIAAAAAgAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>ViewModels\MainViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="UltimateFrisbeeApplication.ViewModels.ManagerViewModel">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\ManagerViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UltimateFrisbeeApplication.ViewModels.PlayerViewModel">
+    <Position X="3.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAACAAAAAAggAAAAAAAAAAAAAAAAAABAQIAAAAEIAA=</HashCode>
+      <FileName>ViewModels\PlayerViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UltimateFrisbeeApplication.ViewModels.TeamViewModel">
+    <Position X="8.5" Y="1.75" Width="2.25" />
+    <InheritanceLine Type="UltimateFrisbeeApplication.ViewModels.BaseViewModel" FixedToPoint="true">
+      <Path>
+        <Point X="4.5" Y="1.062" />
+        <Point X="4.5" Y="1.375" />
+        <Point X="10.312" Y="1.375" />
+        <Point X="10.312" Y="1.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAgAAABAAEACAQAAAAAAABgAAAAAAQEACA=</HashCode>
+      <FileName>ViewModels\TeamViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

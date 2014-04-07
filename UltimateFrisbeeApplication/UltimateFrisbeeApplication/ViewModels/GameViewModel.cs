@@ -12,7 +12,6 @@ namespace UltimateFrisbeeApplication.ViewModels
     {
        //player we are looking at 
        public Game game { get; set; }
-       public ObservableCollection<Player> players { get; set; }
        public string header { get; set; }
 
        //constructor for a manager view model. In the future this may query the DB to produce the list of teams
@@ -67,7 +66,6 @@ namespace UltimateFrisbeeApplication.ViewModels
        public void update()
        {
            game = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games[App.Manager.currentGame];
-           players = game.players;
            header = App.Manager.teams[App.Manager.currentTeam].Name + " vs " + game.opponent;
 
        }
@@ -81,7 +79,7 @@ namespace UltimateFrisbeeApplication.ViewModels
            //for every player on the team, for this season, add him to the specific game instance. 
            foreach (Player player in App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players)
            {
-               App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games[App.Manager.currentGame].players.Add(player);
+               App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games[App.Manager.currentGame].players.Add(new InGamePlayer(player));
            }
 
            update(); //sets current game instance to the one we just created 
@@ -90,13 +88,16 @@ namespace UltimateFrisbeeApplication.ViewModels
 
        public void completeGame()
        {
+           //TODO: Create a game instance DB object for this game, for each player.... 
            //update the DB with all the players stats from this game, game is now complete.
-           foreach (Player player in players)
+           foreach (Player player in game.players)
            {
-               int Playerindex = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players.IndexOf(player);
+               Debug.WriteLine("Player: " + player.FullName + "ID: " + player.PlayerID);
+               int Playerindex = App.TeamViewModel.getPlayerIndexID(player.PlayerID);
                App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players[Playerindex].Assists += player.Assists;
                App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players[Playerindex].Defenses += player.Defenses;
                App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players[Playerindex].Goals += player.Goals;
+               Debug.WriteLine(player.FullName + "Now has: " + player.Goals);
                App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players[Playerindex].Points += player.Points;
                App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players[Playerindex].Turnovers += player.Turnovers; 
            }

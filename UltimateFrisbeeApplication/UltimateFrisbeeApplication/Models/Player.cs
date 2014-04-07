@@ -8,121 +8,41 @@ namespace UltimateFrisbeeApplication.Models
 {
     public class Player
     {
-        private string _Fname; 
-        private string _Lname; 
-        private string _Phone; 
-        private string _Email; 
-        private int _goals;
-        private int _assists;
-        private int _turnovers;
-        private int _points; 
-        private int _defenses;
-        private int _playerID; 
-
+        public string Fname { get; set; }
+        public string Lname { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
+        public int Goals { get; set; }
+        public int Assists { get; set; }
+        public int Turnovers { get; set; }
+        public int Points { get; set; }
+        public int Defenses { get; set; }
+        public int PlayerID { get; set; }
         public Player()
         {
-            this._Fname = "John";
-            this._Lname = "Doe";
-            this._Phone = "7203631281";
-            this._Email = "test@gmail.com";
-            this._goals = 0;
-            this._assists = 0;
-            this._turnovers = 0;
-            this._defenses = 0; 
-            this._points = 0; 
+            this.Fname = "fred";
+            this.Lname = "button"; 
         }
         public Player(string FName, string LName, string Phone = "None", string Email = "None")
         {
-            this._Fname = FName;
-            this._Lname = LName;
-            this._Phone = Phone;
-            this._Email = Email;
+            this.Fname = FName;
+            this.Lname = LName;
+            this.Phone = Phone;
+            this.Email = Email;
+            
+            this.PlayerID = App.random.Next(0, 1000000); // give him a random player ID
         }
 
         //below methods are all for binding purposes, and get/set! 
-
-        public int PlayerID
-        {
-            get { return _playerID; }
-            set { _playerID = value; }
-        }
-
-        public string FName
-        {
-            get { return _Fname; }
-            set { _Fname = value; }
-        }
-        public string LName
-        {
-            get { return _Lname; }
-            set { _Lname = value; }
-        }
+        
 
         public string FullName
         {
-            get { return _Fname +" "+ _Lname;  }
+            get { return Fname +" "+ Lname;  }
         }
         public string SeasonStats
         {
-            get { return _goals + " goals, " + _assists + " assists, " + _turnovers + " turnovers"; }
-        }
-
-        public string Phone
-        {
-            get { return _Phone; }
-            set
-            {
-                _Phone = value;
-            }
-        }
-        public string Email
-        {
-            get { return _Email; }
-            set
-            {
-                _Email = value;
-            }
-        }
-        public int Goals
-        {
-            get { return _goals; }
-            set
-            {
-                _goals = value;
-            }
-        }
-
-        public int Defenses
-        {
-            get { return _defenses; }
-            set
-            {
-                _defenses = value;
-            }
-        }
-        public int Assists
-        {
-            get { return _assists; }
-            set
-            {
-                _assists = value;
-            }
-        }
-        public int Turnovers
-        {
-            get { return _turnovers; }
-            set
-            {
-                _turnovers = value;
-            }
-        }
-        public int Points
-        {
-            get { return _points; }
-            set
-            {
-                _points = value;
-            }
+            get { return Goals + " goals, " + Assists + " assists, " + Turnovers + " turnovers"; }
         }
 
     }

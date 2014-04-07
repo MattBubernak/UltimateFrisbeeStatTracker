@@ -15,7 +15,8 @@ namespace UltimateFrisbeeApplication.Models
         public int currentSeason;
         public int currentPlayer;
         public int currentGame;
-        public int numTeams; 
+        public int numTeams;
+        public int currentActivePlayer; 
 
         public Manager()
         {
@@ -24,7 +25,8 @@ namespace UltimateFrisbeeApplication.Models
             currentSeason = 0;
             currentPlayer = 0;
             currentGame = 0;
-            numTeams = 0; 
+            numTeams = 0;
+            currentActivePlayer = 0; 
         }
 
         //add a team to the collection of teams a manager has. In the future this may add a team to the DB as well. 

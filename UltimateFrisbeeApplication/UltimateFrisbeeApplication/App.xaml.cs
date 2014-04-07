@@ -18,13 +18,16 @@ namespace UltimateFrisbeeApplication
         private static ManagerViewModel managerViewModel = null;
         private static TeamViewModel teamViewModel = null;
         private static PlayerViewModel playerViewModel = null;
-        private static GameViewModel gameViewModel = null; 
-
+        private static GameViewModel gameViewModel = null;
+        private static ActivePlayerViewModel activePlayerViewModel = null;
+        public static Random random = new Random(); 
         private static Manager manager = null;
         /// <summary>
         /// A static ViewModel used by the views to bind against.
         /// </summary>
         /// <returns>The MainViewModel object.</returns>
+        /// 
+        
         public static MainViewModel ViewModel
         {
             get
@@ -34,6 +37,18 @@ namespace UltimateFrisbeeApplication
                     viewModel = new MainViewModel();
 
                 return viewModel;
+            }
+        }
+
+        public static ActivePlayerViewModel ActivePlayerViewModel
+        {
+            get
+            {
+                // Delay creation of the view model until necessary
+                if (activePlayerViewModel == null)
+                    activePlayerViewModel = new ActivePlayerViewModel();
+
+                return activePlayerViewModel;
             }
         }
 

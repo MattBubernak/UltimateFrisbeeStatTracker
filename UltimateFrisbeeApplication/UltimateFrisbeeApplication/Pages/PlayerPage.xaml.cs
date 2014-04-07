@@ -26,7 +26,7 @@ namespace UltimateFrisbeeApplication.Pages
             {
                 int index = int.Parse(selectedIndex);
                 App.Manager.currentPlayer = index;
-                App.PlayerViewModel.update(); 
+                App.PlayerViewModel.update(); //false indicates we are not viewing a player who is in-game 
                 DataContext = App.PlayerViewModel;
             }
         }

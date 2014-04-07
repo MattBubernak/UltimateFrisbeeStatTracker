@@ -10,26 +10,23 @@ namespace UltimateFrisbeeApplication.ViewModels
     public class TeamViewModel : BaseViewModel
     {
        //Seasons = list of seasons in manager view model
-       public ObservableCollection<Season> Seasons { get; private set; }
+       //public ObservableCollection<Season> Seasons { get; private set; }
 
        //Players = list of players from CURRENT season
-       public ObservableCollection<Player> seasonPlayers { get; set; }
+       //public ObservableCollection<Player> seasonPlayers { get; set; }
        //Games = list of games from CURRENT season
-       public ObservableCollection<Game> seasonGames { get; set; }
+       //public ObservableCollection<Game> seasonGames { get; set; }
        public Season currentSeason { get; set;  }
        public string Name { get; set; }
-       public int Wins {get;set;}
-       public int Losses {get; set; }
-       public int GoalsScored {get;set;}
-       public int GoalsAllowed {get;set;}
+
 
        //constructor for a manager view model. In the future this may query the DB to produce the list of teams
        public TeamViewModel()
        {
-           this.Seasons = new ObservableCollection<Season>();
+           //this.Seasons = new ObservableCollection<Season>();
            this.currentSeason = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason]; 
-           this.seasonGames = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games;
-           this.seasonPlayers = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players;
+           //this.seasonGames = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games;
+           //this.seasonPlayers = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players;
            this.Name = App.Manager.teams[App.Manager.currentTeam].Name; 
        }
 
@@ -40,12 +37,21 @@ namespace UltimateFrisbeeApplication.ViewModels
            return index; 
        }
 
+        public int getPlayerIndexID(int playerID)
+       {
+            foreach (Player player in currentSeason.players)
+            {
+                if (player.PlayerID == playerID)
+                {
+                    return App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players.IndexOf(player);
+                }
+            }
+            throw new Exception("player didn't exist!");
+       }
+
        public void update()
        {
-           this.seasonGames = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games;
-           this.seasonPlayers = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players;
-          
-
+           this.currentSeason = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason]; 
        }
 
        

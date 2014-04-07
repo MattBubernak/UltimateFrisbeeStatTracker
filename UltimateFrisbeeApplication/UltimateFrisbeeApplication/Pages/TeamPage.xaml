@@ -24,8 +24,8 @@
         <phone:Panorama Title="{Binding Name}" x:Name="PanoramaControl" SelectionChanged="PanoramaSelectionChanged" Grid.RowSpan="2">
 
             <!--Panorama item one-->
-            <phone:PanoramaItem Header="Games">
-                <phone:LongListSelector x:Name="GameSelector" Margin="0,0,-12,0" ItemsSource="{Binding seasonGames}" SelectionChanged="GameSelector_SelectionChanged">
+            <phone:PanoramaItem Header="Games" DataContext="{Binding currentSeason}">
+                <phone:LongListSelector x:Name="GameSelector" Margin="0,0,-12,0" ItemsSource="{Binding games}" SelectionChanged="GameSelector_SelectionChanged">
                     <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Margin="0,0,0,17">
@@ -39,9 +39,9 @@
             </phone:PanoramaItem>
 
             <!--Panorama item two-->
-            <phone:PanoramaItem Header="Players">
+            <phone:PanoramaItem Header="Players" DataContext="{Binding currentSeason}">
                 <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-                    <phone:LongListSelector x:Name="PlayerSelector" Margin="0,0,-12,0" ItemsSource="{Binding seasonPlayers}" SelectionChanged="PlayerSelector_SelectionChanged">
+                    <phone:LongListSelector x:Name="PlayerSelector" Margin="0,0,-12,0" ItemsSource="{Binding players}" SelectionChanged="PlayerSelector_SelectionChanged">
                         <phone:LongListSelector.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="0,0,0,17">

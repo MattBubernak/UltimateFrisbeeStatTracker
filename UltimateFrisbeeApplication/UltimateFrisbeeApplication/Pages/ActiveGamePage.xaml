@@ -40,7 +40,7 @@
             <TextBox Text="{Binding ScoreOpp}" Margin="45.233,1,0,478" TextAlignment="Center" FontSize="60" Grid.ColumnSpan="2" Grid.Column="1" ></TextBox>
             <TextBox Text="{Binding Score}" Margin="0,0,166.767,479" TextAlignment="Center" FontSize="60" ></TextBox>
 
-            <phone:LongListSelector x:Name="ActivePlayerSelector" Margin="0,133,-12,69" ItemsSource="{Binding players}" SelectionChanged="ActivePlayerSelector_SelectionChanged" Grid.ColumnSpan="3">
+            <phone:LongListSelector x:Name="ActivePlayerSelector" Margin="0,133,-12,69" DataContext="{Binding game}"  ItemsSource="{Binding players}" SelectionChanged="ActivePlayerSelector_SelectionChanged" Grid.ColumnSpan="3">
                 <phone:LongListSelector.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Margin="0,0,0,17">
