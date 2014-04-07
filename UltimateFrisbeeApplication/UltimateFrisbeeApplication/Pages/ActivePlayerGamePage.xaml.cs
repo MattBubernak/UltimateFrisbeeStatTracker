@@ -35,7 +35,9 @@ namespace UltimateFrisbeeApplication.Pages
 
         private void Update_Player_Stats(object sender, EventArgs e)
         {
+            //push all the player stats from this page to the player in the game.... 
 
+            NavigationService.Navigate(new Uri("/Pages/ActivegamePage.xaml", UriKind.Relative)); 
         }
 
         private void PlusGoal(object sender, RoutedEventArgs e)

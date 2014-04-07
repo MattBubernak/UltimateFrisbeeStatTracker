@@ -14,47 +14,62 @@ namespace UltimateFrisbeeApplication.ViewModels
        public Game game { get; set; }
        public ObservableCollection<Player> players { get; set; }
        public string header { get; set; }
-       public int score { get; set; }
-       public int scoreOpp { get; set; }
 
        //constructor for a manager view model. In the future this may query the DB to produce the list of teams
        public GameViewModel()
        {
            this.game = null;
        }
+       //purely for binding 
+       public int Score
+       {
+           get
+           {
+               return game.score;
+           }
+       }
+       public int ScoreOpp
+       {
+           get
+           {
+               return game.scoreOpp;
+           }
+       }
 
        public void scorePlus()
        {
            game.score++;
-           Debug.WriteLine(game.score);
-           score++; 
-           NotifyPropertyChanged("score"); 
-           App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games[App.Manager.currentGame] = game; 
+           App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games[App.Manager.currentGame] = game;
+           NotifyPropertyChanged("Score"); 
        }
 
         public void scorePlusOpp()
        {
            game.scoreOpp++;
-           scoreOpp++; 
+           App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games[App.Manager.currentGame] = game;
+           NotifyPropertyChanged("ScoreOpp"); 
+
        }
         public void scoreMinus()
         {
             game.score--;
-            score--; 
+            App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games[App.Manager.currentGame] = game;
+            NotifyPropertyChanged("Score"); 
+
         }
         public void scoreMinusOpp()
         {
             game.scoreOpp--;
-            scoreOpp--; 
-            
+            App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games[App.Manager.currentGame] = game;
+            NotifyPropertyChanged("ScoreOpp"); 
+
         }
        public void update()
        {
            game = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games[App.Manager.currentGame];
            players = game.players;
            header = App.Manager.teams[App.Manager.currentTeam].Name + " vs " + game.opponent;
-           score = game.score;
-           scoreOpp = game.scoreOpp;    
+
        }
 
        public void createGame(Game newGame)
@@ -87,11 +102,11 @@ namespace UltimateFrisbeeApplication.ViewModels
            }
 
            //update the season stats
-           App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].GoalsScored += score;
-           App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].GoalsAllowed += scoreOpp;
+           App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].GoalsScored += game.score;
+           App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].GoalsAllowed += game.scoreOpp;
            App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].GamesPlayed++;
 
-           if (score > scoreOpp)
+           if (game.score > game.scoreOpp)
            {
                App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].Wins++;
            }
@@ -108,38 +123,7 @@ namespace UltimateFrisbeeApplication.ViewModels
 
        }
 
-       public int Score
-       {
-           get
-           {
-               return score;
-           }
-           set
-           {
-               if (value != score)
-               {
-                   score = value;
-                   Debug.WriteLine("should be notifying console..."); 
-                   NotifyPropertyChanged("Score");
-               }
-           }
-       }
-
-       public int ScoreOpp
-       {
-           get
-           {
-               return scoreOpp;
-           }
-           set
-           {
-               if (value != scoreOpp)
-               {
-                   scoreOpp = value;
-                   NotifyPropertyChanged("scoreOpp");
-               }
-           }
-       }
+       
 
        
 

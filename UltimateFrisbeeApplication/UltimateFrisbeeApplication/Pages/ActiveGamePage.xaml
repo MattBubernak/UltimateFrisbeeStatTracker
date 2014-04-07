@@ -37,8 +37,8 @@
             <Button Content="-" Margin="113,55,99.767,479" Click="MinusScore"/>
             <Button Content="+" Margin="270,0,59,534" Click="PlusScore_Opp" Grid.ColumnSpan="2"/>
             <Button Content="-" Margin="270,55,59,479" Click="MinusScore_Opp" Grid.ColumnSpan="2"/>
-            <TextBox Text="{Binding scoreOpp}" Margin="45.233,1,0,478" TextAlignment="Center" FontSize="60" Grid.ColumnSpan="2" Grid.Column="1" ></TextBox>
-            <TextBox Text="{Binding score}" Margin="0,0,166.767,479" TextAlignment="Center" FontSize="60" ></TextBox>
+            <TextBox Text="{Binding ScoreOpp}" Margin="45.233,1,0,478" TextAlignment="Center" FontSize="60" Grid.ColumnSpan="2" Grid.Column="1" ></TextBox>
+            <TextBox Text="{Binding Score}" Margin="0,0,166.767,479" TextAlignment="Center" FontSize="60" ></TextBox>
 
             <phone:LongListSelector x:Name="ActivePlayerSelector" Margin="0,133,-12,69" ItemsSource="{Binding players}" SelectionChanged="ActivePlayerSelector_SelectionChanged" Grid.ColumnSpan="3">
                 <phone:LongListSelector.ItemTemplate>
