@@ -25,7 +25,7 @@
 
             <!--Panorama item one-->
             <phone:PanoramaItem Header="Games" DataContext="{Binding currentSeason}">
-                <phone:LongListSelector x:Name="GameSelector" Margin="0,0,-12,0" ItemsSource="{Binding games}" SelectionChanged="GameSelector_SelectionChanged">
+                    <phone:LongListSelector x:Name="GameSelector" Margin="0,0,-12,0" ItemsSource="{Binding games}" SelectionChanged="GameSelector_SelectionChanged">
                     <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Margin="0,0,0,17">
@@ -56,20 +56,24 @@
             </phone:PanoramaItem>
 
             <!--Panorama item two-->
-            <phone:PanoramaItem Header="Stats"/>
-            <StackPanel Grid.Row="0" Margin="-417,45,429,0" DataContext="{Binding currentSeason}">
-                <TextBlock Text="Games Played "></TextBlock>
-                <TextBlock Text="{Binding Games}"></TextBlock>
-                <TextBlock Text="Wins "></TextBlock>
-                <TextBlock Text="{Binding Wins}"></TextBlock>
-                <TextBlock Text="Losses"></TextBlock>
-                <TextBlock Text="{Binding Losses}"></TextBlock>
-                <TextBlock Text="Goals Scored "></TextBlock>
-                <TextBlock Text="{Binding GoalsScored}"></TextBlock>
-                <TextBlock Text="Goals Against "></TextBlock>
-                <TextBlock Text="{Binding GoalsAllowed}"></TextBlock>
+            <phone:PanoramaItem Header="Stats" DataContext="{Binding currentSeason}">
+                <Grid x:Name="statspanel" Grid.Row="2" Margin="12,0,12,0">
+                    <StackPanel>
+                    <TextBlock Text="Games Played "></TextBlock>
+                        <TextBlock Text="{Binding GamesPlayed}"></TextBlock>
+                    <TextBlock Text="Wins "></TextBlock>
+                    <TextBlock Text="{Binding Wins}"></TextBlock>
+                    <TextBlock Text="Losses"></TextBlock>
+                    <TextBlock Text="{Binding Losses}"></TextBlock>
+                    <TextBlock Text="Goals Scored "></TextBlock>
+                    <TextBlock Text="{Binding GoalsScored}"></TextBlock>
+                    <TextBlock Text="Goals Against "></TextBlock>
+                    <TextBlock Text="{Binding GoalsAllowed}"></TextBlock>
+                    </StackPanel>
+                </Grid>
+            </phone:PanoramaItem>
 
-            </StackPanel>
+            
 
         </phone:Panorama>
     </Grid>
