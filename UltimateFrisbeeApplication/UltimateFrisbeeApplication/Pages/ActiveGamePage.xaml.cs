@@ -26,6 +26,7 @@ namespace UltimateFrisbeeApplication.Pages
             String selectedTeam = index.ToString();
             //TODO: Change this implementation from global somehow? 
             App.Manager.currentPlayer = index;
+            App.PlayerViewModel.update(); 
             //Pass the index of the curren team to the team page 
             NavigationService.Navigate(new Uri("/Pages/ActivePlayerGamePage.xaml?playerIndex="+index, UriKind.Relative));
 
