@@ -13,12 +13,13 @@ namespace UltimateFrisbeeApplication.Models
         public string opponent { get; set; }
         public string location { get; set; }
         public string tournament { get; set; }
+        public DateTime date { get; set; }
         public int cap { get; set; }
         public int scoreOpp { get; set; }
         public int score { get; set; }
         public ObservableCollection<InGamePlayer> players { get; set; }
 
-        public Game(string opponent, string location, string tournament, int cap)
+        public Game(string opponent, string location, string tournament, int cap, DateTime date)
         {
             this.opponent = opponent;
             this.location = location;
@@ -26,6 +27,7 @@ namespace UltimateFrisbeeApplication.Models
             this.cap = cap;
             this.score = 0;
             this.scoreOpp = 0;
+            this.date = date; 
             this.players = new ObservableCollection<InGamePlayer>(); 
         }
 
@@ -35,9 +37,9 @@ namespace UltimateFrisbeeApplication.Models
             {
                 if (score > scoreOpp)
                 {
-                    return "Win, " + score + " to " + scoreOpp; 
+                    return "Win, " + score + " to " + scoreOpp + " , " + date; 
                 }
-                return "Loss, " + score + " to " + scoreOpp; 
+                return "Loss, " + score + " to " + scoreOpp + " , " + date; 
             }
         }
     }

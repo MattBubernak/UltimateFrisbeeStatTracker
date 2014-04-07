@@ -37,7 +37,7 @@
             <TextBlock Text="Tournament"></TextBlock>
             <TextBox x:Name="TournamentBox"></TextBox>
             <TextBlock Text="Date"></TextBlock>
-            <toolkit:DatePicker></toolkit:DatePicker>
+            <toolkit:DatePicker x:Name="DateBox"></toolkit:DatePicker>
             <TextBlock Text="GameCap"></TextBlock>
             <TextBox x:Name="CapBox"></TextBox>
         </StackPanel>

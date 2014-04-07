@@ -32,7 +32,7 @@ namespace UltimateFrisbeeApplication.Pages
             {
                 cap = 13; 
             }
-            Game newGame = new Game(OpponentBox.Text,LocationBox.Text,TournamentBox.Text, cap);
+            Game newGame = new Game(OpponentBox.Text,LocationBox.Text,TournamentBox.Text, cap, DateBox.Value.Value.Date);
             App.GameViewModel.createGame(newGame); 
 
             //navigate to active game page 

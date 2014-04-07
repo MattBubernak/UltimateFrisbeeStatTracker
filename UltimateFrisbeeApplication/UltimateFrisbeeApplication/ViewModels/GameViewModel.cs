@@ -13,6 +13,7 @@ namespace UltimateFrisbeeApplication.ViewModels
        //player we are looking at 
        public Game game { get; set; }
        public string header { get; set; }
+       public string gameinfo { get; set; }
 
        //constructor for a manager view model. In the future this may query the DB to produce the list of teams
        public GameViewModel()
@@ -66,8 +67,9 @@ namespace UltimateFrisbeeApplication.ViewModels
        public void update()
        {
            game = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games[App.Manager.currentGame];
-           header = App.Manager.teams[App.Manager.currentTeam].Name + " vs " + game.opponent;
 
+           header = App.Manager.teams[App.Manager.currentTeam].Name + " vs " + game.opponent;
+           gameinfo = "Cap: " + game.cap + " Date: " + game.date;  
        }
 
        public void createGame(Game newGame)
