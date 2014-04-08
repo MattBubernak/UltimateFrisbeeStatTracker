@@ -44,7 +44,7 @@ namespace UltimateFrisbeeApplication.Pages
 
         private void Email_Player(object sender, EventArgs e)
         {
-
+            App.PlayerViewModel.EmailPLayer(); 
         }
 
     }

@@ -34,6 +34,12 @@ namespace UltimateFrisbeeApplication.ViewModels
             phoneCallTask.DisplayName = player.FullName;
             phoneCallTask.Show();
         }
+        public void EmailPLayer()
+        {
+            EmailComposeTask emailComposeTask = new EmailComposeTask();
+            emailComposeTask.To = player.Email;
+            emailComposeTask.Show();
+        }
 
        
     }
