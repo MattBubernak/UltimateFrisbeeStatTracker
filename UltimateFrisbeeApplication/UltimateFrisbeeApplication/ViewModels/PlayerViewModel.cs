@@ -3,7 +3,8 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using UltimateFrisbeeApplication.Resources;
 using UltimateFrisbeeApplication.Models;
-using System.Diagnostics; 
+using System.Diagnostics;
+using Microsoft.Phone.Tasks; 
 
 
 namespace UltimateFrisbeeApplication.ViewModels
@@ -25,6 +26,14 @@ namespace UltimateFrisbeeApplication.ViewModels
        {
            App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players.Add(newPlayer);
        }
+
+        public void CallPLayer()
+        {
+            PhoneCallTask phoneCallTask = new PhoneCallTask();
+            phoneCallTask.PhoneNumber = player.Phone;
+            phoneCallTask.DisplayName = player.FullName;
+            phoneCallTask.Show();
+        }
 
        
     }

@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using Microsoft.Phone.Tasks; 
 
 namespace UltimateFrisbeeApplication.Pages
 {
@@ -38,7 +39,7 @@ namespace UltimateFrisbeeApplication.Pages
 
         private void Call_Player(object sender, EventArgs e)
         {
-
+            App.PlayerViewModel.CallPLayer(); 
         }
 
         private void Email_Player(object sender, EventArgs e)
