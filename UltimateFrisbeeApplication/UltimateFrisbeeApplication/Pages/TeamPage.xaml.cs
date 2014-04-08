@@ -108,6 +108,11 @@ namespace UltimateFrisbeeApplication.Pages
 
         private void GameSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            //get index 
+            int index = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games.IndexOf(GameSelector.SelectedItem as Game);
+            App.Manager.currentGame = index;
+            App.GameViewModel.update(); 
+            NavigationService.Navigate(new Uri("/Pages/GameViewPage.xaml", UriKind.Relative));
 
         }
 

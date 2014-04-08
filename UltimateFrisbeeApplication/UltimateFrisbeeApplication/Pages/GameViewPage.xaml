@@ -1,5 +1,5 @@
 ﻿<phone:PhoneApplicationPage
-    x:Class="UltimateFrisbeeApplication.Pages.ActiveGamePage"
+    x:Class="UltimateFrisbeeApplication.Pages.GameViewPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -35,10 +35,6 @@
                 <ColumnDefinition Width="116*"/>
                 <ColumnDefinition Width="51*"/>
             </Grid.ColumnDefinitions>
-            <Button Content="+" Margin="113,1,99.767,533" Click="PlusScore"></Button>
-            <Button Content="-" Margin="113,55,99.767,479" Click="MinusScore"/>
-            <Button Content="+" Margin="270,0,59,534" Click="PlusScore_Opp" Grid.ColumnSpan="2"/>
-            <Button Content="-" Margin="270,55,59,479" Click="MinusScore_Opp" Grid.ColumnSpan="2"/>
             <TextBox Text="{Binding ScoreOpp}" Margin="45.233,1,0,478" TextAlignment="Center" FontSize="60" Grid.ColumnSpan="2" Grid.Column="1" ></TextBox>
             <TextBox Text="{Binding Score}" Margin="0,0,166.767,479" TextAlignment="Center" FontSize="60" ></TextBox>
 
@@ -54,8 +50,9 @@
                 </phone:LongListSelector.ItemTemplate>
             </phone:LongListSelector>
 
-            <Button Content="Finish Game" Grid.ColumnSpan="3" Margin="0,538,10,-1" Click="Finish_Game"></Button>
-        </Grid>
+            <!--<Button Content="Edit Game" Grid.ColumnSpan="3" Margin="0,538,10,-1" Click="Edit_Game"></Button>
+        -->
+            </Grid>
 
     </Grid>
 

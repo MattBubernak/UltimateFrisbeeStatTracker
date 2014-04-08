@@ -40,9 +40,9 @@ namespace UltimateFrisbeeApplication.Models
         {
             get { return Fname +" "+ Lname;  }
         }
-        public string SeasonStats
+        public string Stats
         {
-            get { return Goals + " goals, " + Assists + " assists, " + Turnovers + " turnovers"; }
+            get { return "G:" + Goals + " A:" + Assists + " D:" + Defenses + " TO:" + Turnovers + " P:" + Points; }
         }
 
     }

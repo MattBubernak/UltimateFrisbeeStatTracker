@@ -100,6 +100,9 @@
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Season.cs" />
     <Compile Include="Models\Team.cs" />
+    <Compile Include="Pages\GameViewPage.xaml.cs">
+      <DependentUpon>GameViewPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ActiveGamePage.xaml.cs">
       <DependentUpon>ActiveGamePage.xaml</DependentUpon>
     </Compile>
@@ -147,6 +150,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="Pages\GameViewPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\ActiveGamePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
