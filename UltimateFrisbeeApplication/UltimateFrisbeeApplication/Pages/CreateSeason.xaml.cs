@@ -11,20 +11,17 @@ using UltimateFrisbeeApplication.Models;
 
 namespace UltimateFrisbeeApplication.Pages
 {
-    public partial class EditPlayer : PhoneApplicationPage
+    public partial class CreatePlayer : PhoneApplicationPage
     {
-        public EditPlayer()
+        public CreatePlayer()
         {
             InitializeComponent();
-            DataContext = App.PlayerViewModel; 
-
         }
 
         private void Save_Player(object sender, EventArgs e)
         {
-            App.PlayerViewModel.updatePlayerInfo(FNameBox.Text, LNameBox.Text, EmailBox.Text, PhoneBox.Text);
-            NavigationService.Navigate(new Uri("/Pages/TeamPage.xaml", UriKind.Relative));
-
+            App.PlayerViewModel.createPlayer(FNameBox.Text, LNameBox.Text, PhoneBox.Text, EmailBox.Text);
+            NavigationService.Navigate(new Uri("/Pages/TeamPage.xaml?panoramaIndex=1", UriKind.Relative)); 
         }
     }
 }

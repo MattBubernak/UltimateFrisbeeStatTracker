@@ -1,5 +1,5 @@
 ﻿<phone:PhoneApplicationPage
-    x:Class="UltimateFrisbeeApplication.Pages.EditPlayer"
+    x:Class="UltimateFrisbeeApplication.Pages.CreatePlayer"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -23,19 +23,19 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
             <TextBlock Text="Ultimate Frisbee Stat Tracker" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="Edit Player" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock Text="New Player" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <StackPanel x:Name="StackPanel" Grid.Row="1" Margin="12,0,12,0" DataContext="{Binding player}">
+        <StackPanel x:Name="StackPanel" Grid.Row="1" Margin="12,0,12,0">
             <TextBlock Text="First Name"></TextBlock>
-            <TextBox x:Name="FNameBox" Text="{Binding Fname}"></TextBox>
+            <TextBox x:Name="FNameBox"></TextBox>
             <TextBlock Text="Last Name"></TextBlock>
-            <TextBox x:Name="LNameBox" Text="{Binding Lname}"></TextBox>
+            <TextBox x:Name="LNameBox"></TextBox>
             <TextBlock Text="Email"></TextBlock>
-            <TextBox x:Name="EmailBox" Text="{Binding Email}"></TextBox>
+            <TextBox x:Name="EmailBox"></TextBox>
             <TextBlock Text="Phone"></TextBlock>
-            <TextBox x:Name="PhoneBox" Text="{Binding Phone}"></TextBox>
+            <TextBox x:Name="PhoneBox"></TextBox>
         </StackPanel>
     </Grid>
 

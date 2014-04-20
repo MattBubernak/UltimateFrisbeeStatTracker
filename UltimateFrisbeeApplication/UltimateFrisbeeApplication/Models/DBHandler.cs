@@ -83,7 +83,10 @@ namespace UltimateFrisbeeApplication.Models
             players[0].Turnovers = player.Turnovers;
             players[0].Points = player.Points;
             players[0].Defenses = player.Defenses;
-
+            players[0].Fname = player.Fname;
+            players[0].Lname = player.Lname;
+            players[0].Email = player.Email;
+            players[0].Phone = player.Phone; 
             await playerTable.UpdateAsync(players[0]); 
             Debug.WriteLine("just updated a player in the DB");
         }

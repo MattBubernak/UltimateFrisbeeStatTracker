@@ -49,6 +49,14 @@ namespace UltimateFrisbeeApplication.ViewModels
             emailComposeTask.Show();
         }
 
+        public void updatePlayerInfo(string FName, string LName, string Email, string Phone)
+        {
+            player.Fname = FName;
+            player.Lname = LName;
+            player.Email = Email;
+            player.Phone = Phone; 
+            dbHandler.updatePlayer(player);
+        }
        
     }
 }

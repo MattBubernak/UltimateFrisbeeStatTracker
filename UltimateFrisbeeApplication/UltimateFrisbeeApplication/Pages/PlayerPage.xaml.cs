@@ -34,7 +34,7 @@ namespace UltimateFrisbeeApplication.Pages
 
         private void Edit_Player(object sender, EventArgs e)
         {
-
+            NavigationService.Navigate(new Uri("/Pages/EditPlayer.xaml", UriKind.Relative));
         }
 
         private void Call_Player(object sender, EventArgs e)
