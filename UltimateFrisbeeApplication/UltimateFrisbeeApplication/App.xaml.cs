@@ -8,7 +8,15 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using UltimateFrisbeeApplication.Resources;
 using UltimateFrisbeeApplication.ViewModels;
-using UltimateFrisbeeApplication.Models; 
+using UltimateFrisbeeApplication.Models;
+using Microsoft.WindowsAzure.MobileServices;
+using System.IO.IsolatedStorage;
+
+using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+
 
 namespace UltimateFrisbeeApplication
 {
@@ -22,11 +30,18 @@ namespace UltimateFrisbeeApplication
         private static ActivePlayerViewModel activePlayerViewModel = null;
         public static Random random = new Random(); 
         private static Manager manager = null;
+        
+
         /// <summary>
         /// A static ViewModel used by the views to bind against.
         /// </summary>
         /// <returns>The MainViewModel object.</returns>
         /// 
+
+        public static MobileServiceClient MobileService = new MobileServiceClient(
+        "https://ultimatestatswindowsphone.azure-mobile.net/",
+        "gSqrDAevsJmkuAanFLEHbYKPOnQYiM80"
+        );
         
         public static MainViewModel ViewModel
         {
@@ -162,7 +177,27 @@ namespace UltimateFrisbeeApplication
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            //data that will be coming from the app storage 
+            IsolatedStorageSettings appData;
+            DBHandler dbHandler = new DBHandler();
+            appData = IsolatedStorageSettings.ApplicationSettings;
+            if (appData.Contains("managerID"))
+            {
+                App.Manager.ID = appData["managerID"] as string;
+                Debug.WriteLine("Found manager ID:" + App.Manager.ID);
+                dbHandler.populate_model(App.Manager.ID); 
+            }
+            //if this phone doesn't contain a manager ID, give it one by adding a new manager to do the database, and putting his id in local storage 
+            else
+            {
+                manager_db newManager = new manager_db();
+                dbHandler.add_manager(newManager);
+                appData.Add("managerID", newManager.ID);
+            }
         }
+
+      
+
 
         // Code to execute when the application is activated (brought to foreground)
         // This code will not execute when the application is first launched
@@ -187,6 +222,7 @@ namespace UltimateFrisbeeApplication
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
         }
+
 
         // Code to execute if a navigation fails
         private void RootFrame_NavigationFailed(object sender, NavigationFailedEventArgs e)

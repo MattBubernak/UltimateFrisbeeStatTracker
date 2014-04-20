@@ -11,12 +11,14 @@ namespace UltimateFrisbeeApplication.Models
     public class Manager
     {
         public ObservableCollection<Team> teams;
+        //public manager_db manager; 
         public int currentTeam;
         public int currentSeason;
         public int currentPlayer;
         public int currentGame;
         public int numTeams;
-        public int currentActivePlayer; 
+        public int currentActivePlayer;
+        public string ID {get;set;}
 
         public Manager()
         {

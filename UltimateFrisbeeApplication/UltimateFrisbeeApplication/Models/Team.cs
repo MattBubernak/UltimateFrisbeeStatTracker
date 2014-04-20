@@ -9,13 +9,17 @@ namespace UltimateFrisbeeApplication.Models
     public class Team
     {
         private string _name;
-        public List<Season> seasons; 
+        public string ID;
+        public string Manager_ID; 
+        public List<Season> seasons;
 
-        public Team(string name)
+        public Team(string name, string ID = "", string Manager_ID = "")
         {
             this._name = name;
             this.seasons = new List<Season>(); 
-            this.seasons.Add(new Season()); 
+            //this.seasons.Add(new Season());
+            this.ID = ID;
+            this.Manager_ID = Manager_ID; 
         }
 
         //Name is used for View Binding, _name is the private variable 

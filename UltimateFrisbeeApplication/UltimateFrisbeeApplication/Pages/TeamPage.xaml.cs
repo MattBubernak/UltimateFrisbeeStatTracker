@@ -23,16 +23,18 @@ namespace UltimateFrisbeeApplication.Pages
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            App.TeamViewModel.update(); 
+
+            Debug.WriteLine("Current Team Index:" + App.Manager.currentTeam);
             //when this page is navigated to, it is passed the integer of the panorama item to default to. Change default value to it. 
             string selectedIndex = "";
             if (NavigationContext.QueryString.TryGetValue("panoramaIndex", out selectedIndex))
             {
-                Debug.WriteLine("Recieved:" + selectedIndex);
+                //Debug.WriteLine("Recieved:" + selectedIndex);
                 int index = int.Parse(selectedIndex);
                 PanoramaControl.DefaultItem = PanoramaControl.Items[index];
                 UpdatePanoramaAppBar(index); 
             }
-            App.TeamViewModel.update(); 
 
         }
 

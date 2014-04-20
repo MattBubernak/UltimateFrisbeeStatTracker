@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using UltimateFrisbeeApplication.Models;
 
 namespace UltimateFrisbeeApplication.Pages
 {
@@ -15,6 +16,7 @@ namespace UltimateFrisbeeApplication.Pages
         public CreateTeam()
         {
             InitializeComponent();
+            
         }
 
         private void Save_Team(object sender, EventArgs e)
@@ -28,7 +30,7 @@ namespace UltimateFrisbeeApplication.Pages
             else
             {
                 string name = TeamNameBox.Text;
-                App.Manager.addTeam(name); 
+                App.ManagerViewModel.addTeam(new Team(name));
                 NavigationService.Navigate(new Uri("/Pages/TeamsPage.xaml", UriKind.Relative));
             }
         }

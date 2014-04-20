@@ -75,10 +75,23 @@ namespace UltimateFrisbeeApplication.ViewModels
        public void createGame(Game newGame)
        {
            //create a new game instance 
+           //App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games.Add(newGame);
+           Debug.WriteLine("create game....");
+
+           Debug.WriteLine("current team: " + App.Manager.currentTeam + "current season: " + App.Manager.currentSeason);
+
+           Debug.WriteLine("Season ID: " + App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].ID);
+           dbHandler.add_game(new game_db(newGame.opponent,newGame.location, newGame.tournament, newGame.date, 
+               newGame.cap, newGame.score, newGame.scoreOpp, 
+               App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].ID));
+
+
            App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games.Add(newGame);
+          
            //set current game to newly created game 
            App.Manager.currentGame = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games.Count - 1; 
            //for every player on the team, for this season, add him to the specific game instance. 
+           Debug.WriteLine("Current Team: " + App.Manager.currentTeam + "Current Season " + App.Manager.currentSeason + "Current game: " + App.Manager.currentGame); 
            foreach (Player player in App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players)
            {
                App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games[App.Manager.currentGame].players.Add(new InGamePlayer(player));
@@ -92,23 +105,25 @@ namespace UltimateFrisbeeApplication.ViewModels
        {
            //TODO: Create a game instance DB object for this game, for each player.... 
            //update the DB with all the players stats from this game, game is now complete.
-           foreach (Player player in game.players)
+           foreach (InGamePlayer player in game.players)
            {
-               Debug.WriteLine("Player: " + player.FullName + "ID: " + player.PlayerID);
-               int Playerindex = App.TeamViewModel.getPlayerIndexID(player.PlayerID);
+               Debug.WriteLine("Player: " + player.Fname + player.Lname + "ID: " + player.player_id);
+               int Playerindex = App.TeamViewModel.getPlayerIndexID(player.player_id);
                App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players[Playerindex].Assists += player.Assists;
                App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players[Playerindex].Defenses += player.Defenses;
                App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players[Playerindex].Goals += player.Goals;
                Debug.WriteLine(player.FullName + "Now has: " + player.Goals);
                App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players[Playerindex].Points += player.Points;
-               App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players[Playerindex].Turnovers += player.Turnovers; 
+               App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players[Playerindex].Turnovers += player.Turnovers;
+               dbHandler.add_inGamePlayer(new InGamePlayer_db(player.player_id,game.ID,player.Fname,player.Lname,player.Assists,player.Defenses,player.Points,player.Goals,player.Turnovers));
+               dbHandler.updatePlayer(App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players[Playerindex]); 
            }
 
            //update the season stats
            App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].GoalsScored += game.score;
            App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].GoalsAllowed += game.scoreOpp;
            App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].GamesPlayed++;
-
+        
            if (game.score > game.scoreOpp)
            {
                App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].Wins++;
@@ -118,11 +133,14 @@ namespace UltimateFrisbeeApplication.ViewModels
                App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].Losses++;
 
            }
+           Debug.WriteLine("bout to update the season...");
+           dbHandler.updateSeason(App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason]); 
            NotifyPropertyChanged("GoalsScored");
            NotifyPropertyChanged("GoalsAllowed");
            NotifyPropertyChanged("GamesPlayed");
            NotifyPropertyChanged("Wins");
            NotifyPropertyChanged("Losses");
+           dbHandler.updateGame(game); 
 
        }
 

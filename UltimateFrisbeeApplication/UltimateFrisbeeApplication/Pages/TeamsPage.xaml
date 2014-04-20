@@ -15,6 +15,7 @@
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -28,6 +29,8 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <ProgressBar Visibility="{Binding loading}" x:Name="Loading" IsIndeterminate="True" Height="10" Width="200"/>
+
             <phone:LongListSelector x:Name="TeamSelector" Margin="0,0,-12,0" ItemsSource="{Binding Teams}" SelectionChanged="TeamSelector_SelectionChanged">
                 <phone:LongListSelector.ItemTemplate>
                     <DataTemplate>

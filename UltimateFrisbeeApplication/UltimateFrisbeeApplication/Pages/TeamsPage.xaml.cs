@@ -19,12 +19,12 @@ namespace UltimateFrisbeeApplication.Pages
         {
             InitializeComponent();
             //set data context of this page to the ManagerViewModel
-            DataContext = App.ManagerViewModel; 
+            DataContext = App.ManagerViewModel;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-
+            App.ManagerViewModel.update(); 
         }
 
 
@@ -46,9 +46,10 @@ namespace UltimateFrisbeeApplication.Pages
 
             //set currentTeam of manager 
             App.Manager.currentTeam = index; 
-
+            
             //Navigate to team page 
             NavigationService.Navigate(new Uri("/Pages/TeamPage.xaml?panoramaIndex=0", UriKind.Relative));
         }
+        
     }
 }

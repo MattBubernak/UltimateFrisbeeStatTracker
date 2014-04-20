@@ -22,9 +22,17 @@ namespace UltimateFrisbeeApplication.ViewModels
        {
            player = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players[App.Manager.currentPlayer]; 
        }
-       public void createPlayer(Player newPlayer)
+       public void createPlayer(string Fname, string Lname, string Phone, string Email)
        {
-           App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players.Add(newPlayer);
+           //add player to database
+           Debug.WriteLine("First Name Providee:" + Fname);
+           Debug.WriteLine("Current Team Name: " + App.Manager.teams[App.Manager.currentTeam].Name);
+           Debug.WriteLine("Current team index: " + App.Manager.currentTeam);
+           Debug.WriteLine("Current Team ID: " + App.Manager.teams[App.Manager.currentTeam].ID);
+           player_db newPlayerDB = new player_db(App.Manager.ID, App.Manager.teams[App.Manager.currentTeam].ID, Fname, Lname, Phone, Email);
+           dbHandler.add_player(newPlayerDB);
+
+          
        }
 
         public void CallPLayer()

@@ -2,8 +2,8 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using UltimateFrisbeeApplication.Resources;
-using UltimateFrisbeeApplication.Models; 
-
+using UltimateFrisbeeApplication.Models;
+using System.Diagnostics; 
 
 namespace UltimateFrisbeeApplication.ViewModels
 {
@@ -37,11 +37,14 @@ namespace UltimateFrisbeeApplication.ViewModels
            return index; 
        }
 
-        public int getPlayerIndexID(int playerID)
+        public int getPlayerIndexID(string playerID)
        {
+           Debug.WriteLine("Recieved player ID: " + playerID); 
             foreach (Player player in currentSeason.players)
             {
-                if (player.PlayerID == playerID)
+                Debug.WriteLine("Checking " + player.ID); 
+
+                if (player.ID == playerID)
                 {
                     return App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players.IndexOf(player);
                 }
@@ -51,7 +54,11 @@ namespace UltimateFrisbeeApplication.ViewModels
 
        public void update()
        {
-           this.currentSeason = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason]; 
+           
+           Debug.WriteLine("Attempting to switch teams" + App.Manager.currentTeam);
+           this.currentSeason = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason];
+           this.Name = App.Manager.teams[App.Manager.currentTeam].Name; 
+
        }
 
        
