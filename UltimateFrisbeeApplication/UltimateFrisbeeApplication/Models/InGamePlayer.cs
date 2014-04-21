@@ -11,6 +11,7 @@ namespace UltimateFrisbeeApplication.Models
         public string player_id; 
         public InGamePlayer(Player player)
         {
+            this.player_id = player.ID; 
             this.Assists = 0;
             this.Defenses = 0;
             this.Points = 0; 

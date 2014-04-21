@@ -92,9 +92,11 @@ namespace UltimateFrisbeeApplication.ViewModels
            App.Manager.currentGame = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games.Count - 1; 
            //for every player on the team, for this season, add him to the specific game instance. 
            Debug.WriteLine("Current Team: " + App.Manager.currentTeam + "Current Season " + App.Manager.currentSeason + "Current game: " + App.Manager.currentGame); 
-           foreach (Player player in App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players)
+           foreach (SeasonPlayer player in App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players)
            {
-               App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games[App.Manager.currentGame].players.Add(new InGamePlayer(player));
+               InGamePlayer newInGamePlayer = new InGamePlayer(player);
+               Debug.WriteLine("====== player_id: " + player.ID);
+               App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games[App.Manager.currentGame].players.Add(newInGamePlayer);
            }
 
            update(); //sets current game instance to the one we just created 
@@ -108,15 +110,28 @@ namespace UltimateFrisbeeApplication.ViewModels
            foreach (InGamePlayer player in game.players)
            {
                Debug.WriteLine("Player: " + player.Fname + player.Lname + "ID: " + player.player_id);
-               int Playerindex = App.TeamViewModel.getPlayerIndexID(player.player_id);
+               int Playerindex = App.TeamViewModel.getSeasonPlayerIndexID(player.player_id);
+               int GlobPlayerIndex = App.TeamViewModel.getPlayerIndexID(App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players[Playerindex].BasePlayerID);
+               //update season player stats 
                App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players[Playerindex].Assists += player.Assists;
                App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players[Playerindex].Defenses += player.Defenses;
                App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players[Playerindex].Goals += player.Goals;
-               Debug.WriteLine(player.FullName + "Now has: " + player.Goals);
                App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players[Playerindex].Points += player.Points;
                App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players[Playerindex].Turnovers += player.Turnovers;
+               //update global player stats 
+               App.Manager.teams[App.Manager.currentTeam].players[GlobPlayerIndex].Assists += player.Assists;
+               App.Manager.teams[App.Manager.currentTeam].players[GlobPlayerIndex].Defenses += player.Defenses;
+               App.Manager.teams[App.Manager.currentTeam].players[GlobPlayerIndex].Goals += player.Goals;
+               App.Manager.teams[App.Manager.currentTeam].players[GlobPlayerIndex].Points += player.Points;
+               App.Manager.teams[App.Manager.currentTeam].players[GlobPlayerIndex].Turnovers += player.Turnovers;
+
                dbHandler.add_inGamePlayer(new InGamePlayer_db(player.player_id,game.ID,player.Fname,player.Lname,player.Assists,player.Defenses,player.Points,player.Goals,player.Turnovers));
-               dbHandler.updatePlayer(App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players[Playerindex]); 
+               //update this season player in the database
+               Debug.WriteLine("about to call update_seasonplayer");
+               dbHandler.update_seasonplayer(App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players[Playerindex]);
+               //update this player in the database
+               dbHandler.update_player(App.Manager.teams[App.Manager.currentTeam].players[GlobPlayerIndex]); 
+
            }
 
            //update the season stats

@@ -11,16 +11,16 @@ using UltimateFrisbeeApplication.Models;
 
 namespace UltimateFrisbeeApplication.Pages
 {
-    public partial class CreatePlayer : PhoneApplicationPage
+    public partial class CreateSeason : PhoneApplicationPage
     {
-        public CreatePlayer()
+        public CreateSeason()
         {
             InitializeComponent();
         }
 
-        private void Save_Player(object sender, EventArgs e)
+        private void Save_Season(object sender, EventArgs e)
         {
-            App.PlayerViewModel.createPlayer(FNameBox.Text, LNameBox.Text, PhoneBox.Text, EmailBox.Text);
+            App.TeamViewModel.Create_Season(seasonBox.Text); 
             NavigationService.Navigate(new Uri("/Pages/TeamPage.xaml?panoramaIndex=1", UriKind.Relative)); 
         }
     }

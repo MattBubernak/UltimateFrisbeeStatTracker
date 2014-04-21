@@ -33,13 +33,13 @@ namespace UltimateFrisbeeApplication.Models
         private IMobileServiceTable<player_db> playerTable = App.MobileService.GetTable<player_db>();
         private IMobileServiceTable<game_db> gameTable = App.MobileService.GetTable<game_db>();
         private IMobileServiceTable<InGamePlayer_db> ingameTable = App.MobileService.GetTable<InGamePlayer_db>();
+        private IMobileServiceTable<SeasonPlayer_db> seasonplayerTable = App.MobileService.GetTable<SeasonPlayer_db>();
 
 
         //adds a manager object to the database 
         public async void add_manager(manager_db manager)
         {
             await App.MobileService.GetTable<manager_db>().InsertAsync(manager);
-            Debug.WriteLine("Just added a new manager to the DB");
         }
 
         public async void updateGame(Game game)
@@ -51,12 +51,10 @@ namespace UltimateFrisbeeApplication.Models
             games[0].score = game.score;
             games[0].scoreOpp = game.scoreOpp; 
             await gameTable.UpdateAsync(games[0]); 
-            Debug.WriteLine("just updated a game in the DB");
         }
 
         public async void updateSeason(Season season)
         {
-            Debug.WriteLine("ready to update the season in the DB");
 
             MobileServiceCollection<season_db, season_db> seasons;
             seasons = await seasonTable
@@ -68,11 +66,10 @@ namespace UltimateFrisbeeApplication.Models
             seasons[0].Wins = season.Wins;
             seasons[0].GamesPlayed = season.GamesPlayed;
             await seasonTable.UpdateAsync(seasons[0]);
-            Debug.WriteLine("just updated the season in the DB");
         }
 
 
-        public async void updatePlayer(Player player)
+        public async void update_player(Player player)
         {
             MobileServiceCollection<player_db, player_db> players;
             players = await playerTable
@@ -88,65 +85,93 @@ namespace UltimateFrisbeeApplication.Models
             players[0].Email = player.Email;
             players[0].Phone = player.Phone; 
             await playerTable.UpdateAsync(players[0]); 
-            Debug.WriteLine("just updated a player in the DB");
+        }
+
+        public async void update_seasonplayer(SeasonPlayer player)
+        {
+            MobileServiceCollection<SeasonPlayer_db, SeasonPlayer_db> seasonplayers;
+
+            //this is breaking it!
+            seasonplayers = await seasonplayerTable
+                    .Where(seasonplayer_db => seasonplayer_db.ID == player.ID)
+                    .ToCollectionAsync();
+            seasonplayers[0].Assists = player.Assists;
+            seasonplayers[0].Goals = player.Goals;
+            seasonplayers[0].Turnovers = player.Turnovers;
+            seasonplayers[0].Points = player.Points;
+            seasonplayers[0].Defenses = player.Defenses;
+            seasonplayers[0].Fname = player.Fname;
+            seasonplayers[0].Lname = player.Lname;
+            seasonplayers[0].Email = player.Email;
+            seasonplayers[0].Phone = player.Phone;
+            await seasonplayerTable.UpdateAsync(seasonplayers[0]);
         }
 
         public async void add_team(team_db team)
         {
-            Debug.WriteLine("Adding the following team");
-            Debug.WriteLine("Manager ID:" + team.manager_id);
-            Debug.WriteLine("Team Name" + team.name);
+      
             await App.MobileService.GetTable<team_db>().InsertAsync(team);
-            Debug.WriteLine("Just added a new team to the DB");
 
 
             //add the team to our manager model 
-            Debug.WriteLine("Team ID:" + team.ID);
             Team newTeam = new Team(team.name); 
             newTeam.Manager_ID = App.Manager.ID;
             newTeam.ID = team.ID;
             App.Manager.teams.Add(newTeam);
             App.Manager.currentTeam = App.Manager.teams.Count - 1; 
-            //create a season for this team
-            season_db newSeason = new season_db();
-            newSeason.manager_id = App.Manager.ID;
-            newSeason.team_id = newTeam.ID; 
-            add_season(newSeason);
+           
 
         }
         public async void add_player(player_db player)
         {
+            //add the player to the database 
             await App.MobileService.GetTable<player_db>().InsertAsync(player);
-            Debug.WriteLine("Just added a new player to the DB");
-            //add player to the model 
+            //add player to the model, using player ID from the database 
+
             Player newPlayer = new Player(player.Fname, player.Lname, player.Phone, player.Email, player.team_id);
             newPlayer.ID = player.ID; 
-            App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players.Add(newPlayer);
-           
+            App.Manager.teams[App.Manager.currentTeam].players.Add(newPlayer);
+
+            //create a season db instance of the player in the current season, need player ID to do this. 
+
+            SeasonPlayer_db seasonplayer = new SeasonPlayer_db(player);
+            seasonplayer.Season_ID = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].ID;
+
+            add_seasonPlayer(seasonplayer);
+ 
+
         }
         public async void add_inGamePlayer(InGamePlayer_db ingameplayer)
         {
             await App.MobileService.GetTable<InGamePlayer_db>().InsertAsync(ingameplayer);
-            Debug.WriteLine("Just added a new ingameplayer to the DB");
+
         }
+
+        public async void add_seasonPlayer(SeasonPlayer_db seasonplayer)
+        {
+           // await App.MobileService.GetTable<SeasonPlayer_db>().InsertAsync(new SeasonPlayer_db(new Player()));
+
+            await App.MobileService.GetTable<SeasonPlayer_db>().InsertAsync(seasonplayer);
+            SeasonPlayer newSeasonPlayer = new SeasonPlayer(seasonplayer); 
+
+            //add season player to the team 
+
+            App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players.Add(new SeasonPlayer(seasonplayer.ID, seasonplayer.BasePlayerID, seasonplayer.Season_ID, seasonplayer.Fname, seasonplayer.Lname, seasonplayer.Email, seasonplayer.Phone));
+        }
+
+
         public async void add_season(season_db season)
         {
-            Debug.WriteLine("add season....");
 
             await App.MobileService.GetTable<season_db>().InsertAsync(season);
-            Debug.WriteLine("Just added a new season to the DB");
-            App.Manager.teams[App.Manager.currentTeam].seasons.Add(new Season(App.Manager.teams[App.Manager.currentTeam].ID));
+            //add season to the team once we have an ID 
             App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].ID = season.ID;
-            App.Manager.teams[App.Manager.currentTeam].seasons.Add(new Season(season.ID));
 
-            Debug.WriteLine("New Season ID: " +  App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].ID);
-            Debug.WriteLine("current team: " + App.Manager.currentTeam + "current season: " + App.Manager.currentSeason);
         }
 
         public async void add_game(game_db game)
         {
             await App.MobileService.GetTable<game_db>().InsertAsync(game);
-            Debug.WriteLine("Just added a new game to the DB");
             Game newGame = new Game(game.opponent, game.location, game.tournament, game.cap, game.date, game.season_id, game.ID) ;
             App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games[App.Manager.currentGame].season_id = game.season_id;
             App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games[App.Manager.currentGame].ID = game.ID;
@@ -173,7 +198,6 @@ namespace UltimateFrisbeeApplication.Models
                 //for each team, place it in our team model 
                 foreach (team_db team in teams)
                 {
-                    Debug.WriteLine("adding team: " + team.name + " id: " + team.ID + "\n");
                     App.Manager.teams.Add(new Team(team.name,team.ID));
                     //grab each season 
                     seasons = await seasonTable
@@ -183,12 +207,20 @@ namespace UltimateFrisbeeApplication.Models
                     App.Manager.currentPlayer = 0;
                     App.Manager.currentActivePlayer = 0;
                     App.Manager.currentGame = 0;
+
+                    players = await playerTable
+                            .Where(player_db => player_db.team_id == team.ID)
+                            .ToCollectionAsync();
+                    foreach (player_db player in players)
+                    {
+                        Player newPlayer = new Player(player.Fname, player.Lname, player.Phone, player.Email, player.team_id, player.Goals, player.Assists, player.Turnovers, player.Points, player.Defenses, player.ID);
+                        App.Manager.teams[App.Manager.currentTeam].players.Add(newPlayer);
+                    }
+
+
                     foreach (season_db season in seasons)
                     {
-                        Debug.WriteLine("adding season id: " + season.ID + "goalsscored: " + season.GoalsScored + "curent season: " + App.Manager.currentSeason);
-                        App.Manager.teams[App.Manager.currentTeam].seasons.Add(new Season(season.ID,season.Wins,season.Losses,season.GoalsScored,season.GoalsAllowed,season.GamesPlayed));
-                        Debug.WriteLine("Goals Scored:" + App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].GoalsScored);
-                        Debug.WriteLine("number of seasons:" + App.Manager.teams[App.Manager.currentTeam].seasons.Count);
+                        App.Manager.teams[App.Manager.currentTeam].seasons.Add(new Season(season.Name, season.ID, season.Wins, season.Losses, season.GoalsScored, season.GoalsAllowed, season.GamesPlayed));
                         games = await gameTable
                             .Where(game_db => game_db.season_id == season.ID)
                             .ToCollectionAsync();
@@ -209,20 +241,20 @@ namespace UltimateFrisbeeApplication.Models
 
                             App.Manager.currentGame++;                         
                         }
-                        Debug.WriteLine("grabbing players from this team and putting them in the season....\n");
-                        Debug.WriteLine("comparing to team ID: " + team.ID);
-                        players = await playerTable
-                            .Where(player_db => player_db.team_id == team.ID)
-                            .ToCollectionAsync();
+                        MobileServiceCollection<SeasonPlayer_db, SeasonPlayer_db> seasonPlayers;
 
-                        foreach (player_db player in players)
+                        //await App.MobileService.GetTable<SeasonPlayer_db>().InsertAsync(new SeasonPlayer_db());
+
+
+                        seasonPlayers = await seasonplayerTable
+                            .Where(SeasonPlayer_db => SeasonPlayer_db.Season_ID == season.ID).ToCollectionAsync();
+
+                        foreach (SeasonPlayer_db player in seasonPlayers)
                         {
-                            Debug.WriteLine("Player:" + player.Fname);
-                            Debug.WriteLine("current team: " + App.Manager.currentTeam + " current sesason: " + App.Manager.currentSeason);
-                            Player newPlayer = new Player(player.Fname, player.Lname, player.Phone, player.Email, player.team_id,player.Goals,player.Assists,player.Turnovers,player.Points,player.Defenses,player.ID);
+                            SeasonPlayer newPlayer = new SeasonPlayer(player.ID, player.BasePlayerID, player.Season_ID, player.Fname, player.Lname, player.Email, player.Phone, player.Goals, player.Assists, player.Defenses, player.Points, player.Turnovers);
                             App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players.Add(newPlayer);
-                        
                         }
+                        
 
                         //incrament season index 
                         App.Manager.currentSeason++; 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel; 
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,13 +11,15 @@ namespace UltimateFrisbeeApplication.Models
     {
         private string _name;
         public string ID;
-        public string Manager_ID; 
-        public List<Season> seasons;
+        public string Manager_ID;
+        public ObservableCollection<Season> seasons { get; set; }
+        public List<Player> players; 
 
         public Team(string name, string ID = "", string Manager_ID = "")
         {
             this._name = name;
-            this.seasons = new List<Season>(); 
+            this.seasons = new ObservableCollection<Season>();
+            this.players = new List<Player>(); 
             //this.seasons.Add(new Season());
             this.ID = ID;
             this.Manager_ID = Manager_ID; 

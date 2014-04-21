@@ -101,12 +101,18 @@
     <Compile Include="Models\Manager.cs" />
     <Compile Include="Models\InGamePlayer.cs" />
     <Compile Include="Models\manager_db.cs" />
+    <Compile Include="Models\SeasonPlayer_db2.cs" />
+    <Compile Include="Models\SeasonPlayer_db.cs" />
+    <Compile Include="Models\SeasonPlayer.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\player_db.cs" />
     <Compile Include="Models\Season.cs" />
     <Compile Include="Models\season_db.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Models\team_db.cs" />
+    <Compile Include="Pages\CreateSeason.xaml.cs">
+      <DependentUpon>CreateSeason.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\EditPlayer.xaml.cs">
       <DependentUpon>EditPlayer.xaml</DependentUpon>
     </Compile>
@@ -137,6 +143,9 @@
     <Compile Include="Pages\TeamPage.xaml.cs">
       <DependentUpon>TeamPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\SeasonsPage.xaml.cs">
+      <DependentUpon>SeasonsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\TeamsPage.xaml.cs">
       <DependentUpon>TeamsPage.xaml</DependentUpon>
     </Compile>
@@ -160,6 +169,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="Pages\CreateSeason.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\EditPlayer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -203,6 +216,10 @@
     <Page Include="Pages\TeamPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SeasonsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\TeamsPage.xaml">
       <SubType>Designer</SubType>

@@ -21,28 +21,28 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel Grid.Row="0" Margin="12,17,0,28" DataContext="{Binding player}">
+        <StackPanel Grid.Row="0" Margin="12,17,0,28" >
             <TextBlock Text="Ultimate Frisbee Stat Tracker" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="{Binding FullName}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+                <TextBlock DataContext="{Binding seasonplayer}" Text="{Binding FullName}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
             <Image Source="/Images/default-avatar.png" Height="262" Margin="15,0,255,0"/>
             <TextBlock Text="Season Stats" Style="{StaticResource PhoneTextLargeStyle}"></TextBlock>
             <TextBlock Text="Goals "></TextBlock>
-            <TextBlock Text="{Binding Goals}"></TextBlock>
+                <TextBlock DataContext="{Binding seasonplayer}" Text="{Binding Goals}"></TextBlock>
             <TextBlock Text="Assists "></TextBlock>
-            <TextBlock Text="{Binding Assists}"></TextBlock>
+                <TextBlock DataContext="{Binding seasonplayer}"  Text="{Binding Assists}"></TextBlock>
             <TextBlock Text="Defenses"></TextBlock>
-            <TextBlock Text="{Binding Defenses}"></TextBlock>
+                <TextBlock DataContext="{Binding seasonplayer}" Text="{Binding Defenses}"></TextBlock>
             <TextBlock Text="Points"></TextBlock>
-            <TextBlock Text="{Binding Points}"></TextBlock>
+                <TextBlock DataContext="{Binding seasonplayer}" Text="{Binding Points}"></TextBlock>
             <TextBlock Text="Lifetime Stats" Style="{StaticResource PhoneTextLargeStyle}"></TextBlock>
             <TextBlock Text="Goals "></TextBlock>
-            <TextBlock Text="{Binding Goals}"></TextBlock>
+                <TextBlock DataContext="{Binding player}" Text="{Binding Goals}"></TextBlock>
             <TextBlock Text="Assists "></TextBlock>
-            <TextBlock Text="{Binding Assists}"></TextBlock>
+                <TextBlock DataContext="{Binding player}" Text="{Binding Assists}"></TextBlock>
             <TextBlock Text="Defenses"></TextBlock>
-            <TextBlock Text="{Binding Defenses}"></TextBlock>
+                <TextBlock DataContext="{Binding player}" Text="{Binding Defenses}"></TextBlock>
             <TextBlock Text="Points"></TextBlock>
-            <TextBlock Text="{Binding Points}"></TextBlock>
+                <TextBlock DataContext="{Binding player}" Text="{Binding Points}"></TextBlock>
         </StackPanel>
         
         <!--ContentPanel - place additional content here-->

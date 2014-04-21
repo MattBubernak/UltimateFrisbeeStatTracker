@@ -56,9 +56,11 @@
             </phone:PanoramaItem>
 
             <!--Panorama item two-->
-            <phone:PanoramaItem Header="Stats" DataContext="{Binding currentSeason}">
+            <phone:PanoramaItem Header="Team Info" DataContext="{Binding currentSeason}">
                 <Grid x:Name="statspanel" Grid.Row="2" Margin="12,0,12,0">
                     <StackPanel>
+                        <TextBlock Text="Season "></TextBlock>
+                        <TextBlock Text="{Binding Name}"></TextBlock>
                     <TextBlock Text="Games Played "></TextBlock>
                         <TextBlock Text="{Binding GamesPlayed}"></TextBlock>
                     <TextBlock Text="Wins "></TextBlock>
@@ -69,6 +71,7 @@
                     <TextBlock Text="{Binding GoalsScored}"></TextBlock>
                     <TextBlock Text="Goals Against "></TextBlock>
                     <TextBlock Text="{Binding GoalsAllowed}"></TextBlock>
+                    <Button Click="Change_Season">Change Season</Button>
                     </StackPanel>
                 </Grid>
             </phone:PanoramaItem>

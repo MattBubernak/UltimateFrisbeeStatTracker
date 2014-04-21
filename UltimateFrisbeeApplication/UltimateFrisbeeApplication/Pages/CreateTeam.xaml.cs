@@ -31,7 +31,8 @@ namespace UltimateFrisbeeApplication.Pages
             {
                 string name = TeamNameBox.Text;
                 App.ManagerViewModel.addTeam(new Team(name));
-                NavigationService.Navigate(new Uri("/Pages/TeamsPage.xaml", UriKind.Relative));
+                //team needs a season, navigate to this page. 
+                NavigationService.Navigate(new Uri("/Pages/CreateSeason.xaml", UriKind.Relative));
             }
         }
     }

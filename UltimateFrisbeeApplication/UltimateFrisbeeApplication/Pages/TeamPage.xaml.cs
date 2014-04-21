@@ -38,6 +38,11 @@ namespace UltimateFrisbeeApplication.Pages
 
         }
 
+        public void Create_Season(string season_name)
+        {
+
+        }
+
         private void Add_Player(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/pages/CreatePlayer.xaml", UriKind.Relative)); 
@@ -97,7 +102,7 @@ namespace UltimateFrisbeeApplication.Pages
         private void PlayerSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //Grab the index from the selector on the page 
-            int index = App.TeamViewModel.getPlayerIndex(PlayerSelector.SelectedItem as Player);
+            int index = App.TeamViewModel.getPlayerIndex(PlayerSelector.SelectedItem as SeasonPlayer);
             String selectedPlayer = index.ToString();
             //TODO: Change this implementation from global somehow? 
             App.Manager.currentPlayer = index;
@@ -116,6 +121,11 @@ namespace UltimateFrisbeeApplication.Pages
             App.GameViewModel.update(); 
             NavigationService.Navigate(new Uri("/Pages/GameViewPage.xaml", UriKind.Relative));
 
+        }
+
+        private void Change_Season(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Pages/SeasonsPage.xaml", UriKind.Relative));
         }
 
     }

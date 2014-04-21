@@ -11,6 +11,7 @@ namespace UltimateFrisbeeApplication.Models
         public string ID { get; set; }
         public string manager_id { get; set; }
         public string team_id { get; set; }
+        public string Name { get; set; }
         public int Wins { get; set; }
         public int GoalsScored { get; set; }
         public int Losses { get; set; }
