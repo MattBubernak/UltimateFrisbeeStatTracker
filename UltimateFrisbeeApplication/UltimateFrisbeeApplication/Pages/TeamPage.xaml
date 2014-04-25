@@ -24,18 +24,23 @@
         <phone:Panorama Title="{Binding Name}" x:Name="PanoramaControl" SelectionChanged="PanoramaSelectionChanged" Grid.RowSpan="2">
 
             <!--Panorama item one-->
-            <phone:PanoramaItem Header="Games" DataContext="{Binding currentSeason}">
-                    <phone:LongListSelector x:Name="GameSelector" Margin="0,0,-12,0" ItemsSource="{Binding games}" SelectionChanged="GameSelector_SelectionChanged">
-                    <phone:LongListSelector.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Margin="0,0,0,17">
-                                <TextBlock Text="{Binding opponent}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
-                                <TextBlock Text="{Binding gameDescription}" TextWrapping="Wrap" Style="{StaticResource PhoneTextSubtleStyle}"/>
+            
+            <phone:PanoramaItem Header="Games">
+                <StackPanel>
+                    <Button Visibility="{Binding activeGame}" Click="goToActiveGame" >Active Game</Button>
 
-                            </StackPanel>
-                        </DataTemplate>
-                    </phone:LongListSelector.ItemTemplate>
-                </phone:LongListSelector>
+                    <phone:LongListSelector DataContext="{Binding currentSeason}" Height="500" x:Name="GameSelector" Margin="0,0,-12,0" ItemsSource="{Binding games}" SelectionChanged="GameSelector_SelectionChanged">
+                        <phone:LongListSelector.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="0,0,0,17">
+                                    <TextBlock Text="{Binding opponent}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                                    <TextBlock Text="{Binding gameDescription}" TextWrapping="Wrap" Style="{StaticResource PhoneTextSubtleStyle}"/>
+
+                                </StackPanel>
+                            </DataTemplate>
+                        </phone:LongListSelector.ItemTemplate>
+                    </phone:LongListSelector>
+                </StackPanel>
             </phone:PanoramaItem>
 
             <!--Panorama item two-->

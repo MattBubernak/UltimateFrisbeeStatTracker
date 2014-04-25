@@ -190,9 +190,11 @@ namespace UltimateFrisbeeApplication
             //if this phone doesn't contain a manager ID, give it one by adding a new manager to do the database, and putting his id in local storage 
             else
             {
-                manager_db newManager = new manager_db();
-                dbHandler.add_manager(newManager);
-                appData.Add("managerID", newManager.ID);
+                //manager_db newManager = new manager_db();
+                //dbHandler.add_manager(newManager);
+                //appData.Add("managerID", newManager.ID);
+                dbHandler.populate_model("0724B9E2-D490-4AA0-A6D3-9E752FABC1CE"); 
+
             }
         }
 

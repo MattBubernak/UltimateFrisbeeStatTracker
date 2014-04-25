@@ -23,7 +23,8 @@ namespace UltimateFrisbeeApplication.Pages
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            App.TeamViewModel.update(); 
+            App.TeamViewModel.update();
+            Debug.WriteLine(App.TeamViewModel.activeGame);
 
             Debug.WriteLine("Current Team Index:" + App.Manager.currentTeam);
             //when this page is navigated to, it is passed the integer of the panorama item to default to. Change default value to it. 
@@ -118,7 +119,7 @@ namespace UltimateFrisbeeApplication.Pages
             //get index 
             int index = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games.IndexOf(GameSelector.SelectedItem as Game);
             App.Manager.currentGame = index;
-            App.GameViewModel.update(); 
+            App.GameViewModel.update(false); 
             NavigationService.Navigate(new Uri("/Pages/GameViewPage.xaml", UriKind.Relative));
 
         }
@@ -126,6 +127,12 @@ namespace UltimateFrisbeeApplication.Pages
         private void Change_Season(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Uri("/Pages/SeasonsPage.xaml", UriKind.Relative));
+        }
+
+        private void goToActiveGame(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Pages/ActiveGamePage.xaml", UriKind.Relative));
+
         }
 
     }

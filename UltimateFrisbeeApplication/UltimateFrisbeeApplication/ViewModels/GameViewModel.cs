@@ -3,7 +3,9 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using UltimateFrisbeeApplication.Resources;
 using UltimateFrisbeeApplication.Models;
-using System.Diagnostics; 
+using System.Diagnostics;
+using System.Windows;
+using System.Windows.Data;
 
 
 namespace UltimateFrisbeeApplication.ViewModels
@@ -39,34 +41,37 @@ namespace UltimateFrisbeeApplication.ViewModels
        public void scorePlus()
        {
            game.score++;
-           App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games[App.Manager.currentGame] = game;
+           App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].activeGame = game;
            NotifyPropertyChanged("Score"); 
        }
 
         public void scorePlusOpp()
        {
            game.scoreOpp++;
-           App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games[App.Manager.currentGame] = game;
+           App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].activeGame = game;
            NotifyPropertyChanged("ScoreOpp"); 
 
        }
         public void scoreMinus()
         {
             game.score--;
-            App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games[App.Manager.currentGame] = game;
+            App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].activeGame = game;
             NotifyPropertyChanged("Score"); 
 
         }
         public void scoreMinusOpp()
         {
             game.scoreOpp--;
-            App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games[App.Manager.currentGame] = game;
+            App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].activeGame = game;
             NotifyPropertyChanged("ScoreOpp"); 
 
         }
-       public void update()
+       public void update(bool active) //are we updating to a historical game or the active game 
        {
-           game = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games[App.Manager.currentGame];
+           if (active)
+            game = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].activeGame;
+           else
+            game = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games[App.Manager.currentGame];
 
            header = App.Manager.teams[App.Manager.currentTeam].Name + " vs " + game.opponent;
            gameinfo = "Cap: " + game.cap + " Date: " + game.date;  
@@ -74,6 +79,12 @@ namespace UltimateFrisbeeApplication.ViewModels
 
        public void createGame(Game newGame)
        {
+           Debug.WriteLine("changed the visibilty of the game to visibile");
+
+           App.TeamViewModel.activeGame = Visibility.Visible;
+           App.TeamViewModel.activeGame_change(); 
+
+
            //create a new game instance 
            //App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games.Add(newGame);
            Debug.WriteLine("create game....");
@@ -86,25 +97,35 @@ namespace UltimateFrisbeeApplication.ViewModels
                App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].ID));
 
 
-           App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games.Add(newGame);
+           App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].activeGame = newGame;
           
            //set current game to newly created game 
-           App.Manager.currentGame = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games.Count - 1; 
+           //App.Manager.currentGame = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games.Count - 1; 
            //for every player on the team, for this season, add him to the specific game instance. 
-           Debug.WriteLine("Current Team: " + App.Manager.currentTeam + "Current Season " + App.Manager.currentSeason + "Current game: " + App.Manager.currentGame); 
            foreach (SeasonPlayer player in App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players)
            {
                InGamePlayer newInGamePlayer = new InGamePlayer(player);
                Debug.WriteLine("====== player_id: " + player.ID);
-               App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games[App.Manager.currentGame].players.Add(newInGamePlayer);
+               App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].activeGame.players.Add(newInGamePlayer);
            }
 
-           update(); //sets current game instance to the one we just created 
+           update(true); //sets current game instance to the one we just created 
 
        }
 
        public void completeGame()
        {
+           //add the active game to the game list 
+           App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games.Add(game); 
+           //move the current game to this one 
+           App.Manager.currentGame = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games.Count-1 ;
+           //delete the active game 
+           App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].activeGame = null;
+           Debug.WriteLine("changed the visibilty of the game to collapsed");
+
+           App.TeamViewModel.activeGame = Visibility.Collapsed;
+           App.TeamViewModel.activeGame_change(); 
+
            //TODO: Create a game instance DB object for this game, for each player.... 
            //update the DB with all the players stats from this game, game is now complete.
            foreach (InGamePlayer player in game.players)

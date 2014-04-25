@@ -3,7 +3,9 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using UltimateFrisbeeApplication.Resources;
 using UltimateFrisbeeApplication.Models;
-using System.Diagnostics; 
+using System.Diagnostics;
+using System.Windows;
+using System.Windows.Data;
 
 namespace UltimateFrisbeeApplication.ViewModels
 {
@@ -18,6 +20,7 @@ namespace UltimateFrisbeeApplication.ViewModels
        //public ObservableCollection<Game> seasonGames { get; set; }
        public Season currentSeason { get; set;  }
        public string Name { get; set; }
+       public Visibility activeGame { get; set; }
 
 
        //constructor for a manager view model. In the future this may query the DB to produce the list of teams
@@ -28,7 +31,13 @@ namespace UltimateFrisbeeApplication.ViewModels
            { this.currentSeason = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason]; } 
            //this.seasonGames = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games;
            //this.seasonPlayers = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players;
-           this.Name = App.Manager.teams[App.Manager.currentTeam].Name; 
+           this.Name = App.Manager.teams[App.Manager.currentTeam].Name;
+           this.activeGame = Visibility.Collapsed;
+       }
+
+       public void activeGame_change()
+       {
+           NotifyPropertyChanged("activeGame");
        }
 
        //returns the index of a player in the manager model, given a player instance from a list selector. 
@@ -74,7 +83,9 @@ namespace UltimateFrisbeeApplication.ViewModels
            
            Debug.WriteLine("Attempting to switch teams" + App.Manager.currentTeam);
            this.currentSeason = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason];
-           this.Name = App.Manager.teams[App.Manager.currentTeam].Name; 
+           this.Name = App.Manager.teams[App.Manager.currentTeam].Name;
+           NotifyPropertyChanged("Name");
+           NotifyPropertyChanged("currentSeason");
 
        }
 
@@ -93,6 +104,8 @@ namespace UltimateFrisbeeApplication.ViewModels
             foreach (Player player in App.Manager.teams[App.Manager.currentTeam].players)
             {
                 SeasonPlayer_db seasonplayer = new SeasonPlayer_db(player);
+                Debug.WriteLine("current season id: " + App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].ID);
+                seasonplayer.Season_ID = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].ID; 
                 dbHandler.add_seasonPlayer(seasonplayer);
                 //db handler adds the player to the game...
             }

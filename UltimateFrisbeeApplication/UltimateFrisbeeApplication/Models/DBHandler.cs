@@ -104,6 +104,7 @@ namespace UltimateFrisbeeApplication.Models
             seasonplayers[0].Lname = player.Lname;
             seasonplayers[0].Email = player.Email;
             seasonplayers[0].Phone = player.Phone;
+            seasonplayers[0].Season_ID = player.Season_ID; 
             await seasonplayerTable.UpdateAsync(seasonplayers[0]);
         }
 
@@ -152,11 +153,12 @@ namespace UltimateFrisbeeApplication.Models
            // await App.MobileService.GetTable<SeasonPlayer_db>().InsertAsync(new SeasonPlayer_db(new Player()));
 
             await App.MobileService.GetTable<SeasonPlayer_db>().InsertAsync(seasonplayer);
-            SeasonPlayer newSeasonPlayer = new SeasonPlayer(seasonplayer); 
-
+            SeasonPlayer newSeasonPlayer = new SeasonPlayer(seasonplayer);
+            seasonplayer.Season_ID = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].ID;
             //add season player to the team 
 
             App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players.Add(new SeasonPlayer(seasonplayer.ID, seasonplayer.BasePlayerID, seasonplayer.Season_ID, seasonplayer.Fname, seasonplayer.Lname, seasonplayer.Email, seasonplayer.Phone));
+            Debug.WriteLine("just added a season player with season_ID: " + seasonplayer.Season_ID); 
         }
 
 
@@ -166,6 +168,14 @@ namespace UltimateFrisbeeApplication.Models
             await App.MobileService.GetTable<season_db>().InsertAsync(season);
             //add season to the team once we have an ID 
             App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].ID = season.ID;
+            Debug.WriteLine("current season id(inside add_season): " + App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].ID);
+
+            foreach (SeasonPlayer player in App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].players)
+            {
+                Debug.WriteLine("giving player:" + player.FullName + " season id: " + season.ID);
+                player.Season_ID = season.ID;
+                update_seasonplayer(player); 
+            }
 
         }
 
@@ -173,8 +183,8 @@ namespace UltimateFrisbeeApplication.Models
         {
             await App.MobileService.GetTable<game_db>().InsertAsync(game);
             Game newGame = new Game(game.opponent, game.location, game.tournament, game.cap, game.date, game.season_id, game.ID) ;
-            App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games[App.Manager.currentGame].season_id = game.season_id;
-            App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games[App.Manager.currentGame].ID = game.ID;
+            App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].activeGame.season_id = game.season_id;
+            App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].activeGame.ID = game.ID;
 
         }
 

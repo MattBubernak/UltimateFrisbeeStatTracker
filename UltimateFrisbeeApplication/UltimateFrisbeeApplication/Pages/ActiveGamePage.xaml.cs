@@ -22,7 +22,7 @@ namespace UltimateFrisbeeApplication.Pages
         private void ActivePlayerSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-            int index = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games[App.Manager.currentGame].players.IndexOf(ActivePlayerSelector.SelectedItem as InGamePlayer);
+            int index = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].activeGame.players.IndexOf(ActivePlayerSelector.SelectedItem as InGamePlayer);
             String selectedTeam = index.ToString();
             //TODO: Change this implementation from global somehow? 
             App.Manager.currentActivePlayer = index;

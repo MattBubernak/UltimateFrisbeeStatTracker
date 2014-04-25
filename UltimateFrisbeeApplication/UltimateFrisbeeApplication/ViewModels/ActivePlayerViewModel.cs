@@ -13,7 +13,8 @@ namespace UltimateFrisbeeApplication.ViewModels
 
        public override void update()
        {
-               player = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].games[App.Manager.currentGame].players[App.Manager.currentActivePlayer]; 
+               player = App.Manager.teams[App.Manager.currentTeam].seasons[App.Manager.currentSeason].activeGame.players[App.Manager.currentActivePlayer]; 
+
        }
 
         //Stat = string of property being changed
